@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675">
-  <rect width="100%" height="100%" fill="#0f1f1a"/>
-  <g transform="translate(100,120)" stroke="#8cd9b3" fill="none" stroke-width="3" opacity=".95">
-    <polyline points="0,180 140,120 280,150 420,80 560,110 700,70 840,90" />
-  </g>
-  <text x="100" y="340" font-family="Inter, system-ui" font-size="30" fill="#bfe8d3">Exception cuts with tuned rules</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%" height="100%" fill="#0f1115"/><rect x="80" y="120" width="1040" height="435" rx="20" fill="#20242c"/></svg>

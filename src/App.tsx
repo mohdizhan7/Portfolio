@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useScroll,
-  useTransform,
-  useReducedMotion,
+  motion, useMotionValue, useSpring, useScroll, useTransform, useReducedMotion
 } from 'framer-motion';
 import type { HTMLMotionProps, MotionStyle } from 'framer-motion';
 import './styles.css';
@@ -43,18 +38,13 @@ function TrustBar(){
   return (
     <section className="trust" aria-label="Companies I’ve worked with">
       <p className="trust-label">Trusted by teams at</p>
-      <ul className="trust-logos">
-        {logos.map(l => (
-          <li key={l.alt}><img src={`${import.meta.env.BASE_URL}${l.src}`} alt={l.alt} loading="lazy" /></li>
-        ))}
-      </ul>
+      <ul className="trust-logos">{logos.map(l => (
+        <li key={l.alt}><img src={`${import.meta.env.BASE_URL}${l.src}`} alt={l.alt} loading="lazy" /></li>
+      ))}</ul>
     </section>
   );
 }
 
-function SectionBreak(){ return <div className="break" aria-hidden="true" />; }
-
-/* -------------------- DATA -------------------- */
 type Project = {
   id:string; brand:string; logo:string;
   title:string; role:string; bullets:string[]; impact:string;
@@ -103,46 +93,29 @@ type Experience = {
   company:string; logo:string; title:string; period:string; bullets:string[];
 };
 const experience: Experience[] = [
-  {
-    company:'StackBOX', logo:'stackbox.svg',
-    title:'Assistant Project Manager · Supply Chain & Delivery',
-    period:'Sep 2023 – Present',
+  { company:'StackBOX', logo:'stackbox.svg', title:'Assistant Project Manager · Supply Chain & Delivery', period:'Sep 2023 – Present',
     bullets:[
       'Led ITC site launches end-to-end: BRDs, SOP/KPI design, testing, go-live, governance.',
       'Account lead for P&G PH rendering optimisation: tuned rules, dashboards, training.',
       'Drove cost tracking and inter-team coordination for on-time deployments.'
-    ],
-  },
-  {
-    company:'Edgistify', logo:'edgistify.svg',
-    title:'Manager, Solution Design',
-    period:'—',
+    ]},
+  { company:'Edgistify', logo:'edgistify.svg', title:'Manager, Solution Design', period:'—',
     bullets:[
       'Designed tailored supply-chain solutions to improve KPIs and reduce costs.',
       'Built vendor alignment and stakeholder buy-in for rollouts.'
-    ],
-  },
-  {
-    company:'Mindseed Education', logo:'mindseed.svg',
-    title:'Manager, Procurement & Supply Chain',
-    period:'—',
+    ]},
+  { company:'Mindseed Education', logo:'mindseed.svg', title:'Manager, Procurement & Supply Chain', period:'—',
     bullets:[
       'Owned procurement strategy, benchmarking and cost analysis across categories.',
       'Drove end-to-end operational oversight and supplier performance.'
-    ],
-  },
-  {
-    company:'DTDC Express', logo:'dtdc.svg',
-    title:'Branch / Ops Manager',
-    period:'—',
+    ]},
+  { company:'DTDC Express', logo:'dtdc.svg', title:'Branch / Ops Manager', period:'—',
     bullets:[
       'Cleared 15,000-shipment COVID backlog in one week via routing & shift orchestration.',
       'Implemented dashboards, training and RCA for better service levels.'
-    ],
-  },
+    ]},
 ];
 
-/* -------------------- APP -------------------- */
 export default function App(){
   const reduceMotion = useReducedMotion();
 
@@ -172,13 +145,12 @@ export default function App(){
   const imgY  = useTransform(scrollYProgress, [0,1], reduceMotion ? [0,0] : [-8,16]);
   const textY = useTransform(scrollYProgress, [0,1], reduceMotion ? [0,0] : [ 8,-10]);
 
-  // Modal for Work gallery
+  // modal for work gallery
   const [modalOpen,setModalOpen]=useState(false);
   const [modalIdx,setModalIdx]=useState(0);
   const [current,setCurrent]=useState<Project|null>(null);
   function openModal(p:Project, start=0){ setCurrent(p); setModalIdx(start); setModalOpen(true); }
   function closeModal(){ setModalOpen(false); }
-
   useEffect(()=>{
     if(!modalOpen) return;
     const onKey=(e:KeyboardEvent)=>{
@@ -221,8 +193,7 @@ export default function App(){
           <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" sizes="(max-width:700px) 56px, 80px" />
           <motion.img
             src={`${import.meta.env.BASE_URL}izhan.jpg`} alt="Portrait of Mohd Izhan Shaikh"
-            className="avatar" width={80} height={80}
-            loading="eager" decoding="async" fetchPriority="high"
+            className="avatar" width={80} height={80} loading="eager" decoding="async" fetchPriority="high"
             style={{ y: imgY }}
             initial={{opacity:0, scale: reduceMotion ? 1 : .95}}
             animate={{opacity:1, scale:1}}
@@ -243,7 +214,7 @@ export default function App(){
       </section>
 
       <TrustBar />
-      <SectionBreak />
+      <div className="break" aria-hidden="true" />
 
       {/* ABOUT */}
       <section id="about" className="section" aria-labelledby="about-heading">
@@ -254,18 +225,15 @@ export default function App(){
         </motion.p>
       </section>
 
-      <SectionBreak />
+      <div className="break" aria-hidden="true" />
 
-      {/* EXPERIENCE — grid cards */}
+      {/* EXPERIENCE — responsive grid */}
       <section id="experience" className="section" aria-labelledby="exp-heading">
         <motion.h2 id="exp-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Experience</motion.h2>
         <div className="xp-grid" role="list">
           {experience.map((x)=>(
-            <motion.article
-              key={x.company}
-              className="card xp-card" role="listitem" aria-label={`${x.company} — ${x.title}`}
-              variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.35}}
-            >
+            <motion.article key={x.company} className="card xp-card" role="listitem"
+              variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.35}}>
               <header className="xp-head">
                 <img className="company-logo" src={`${import.meta.env.BASE_URL}logos/${x.logo}`} alt={`${x.company} logo`} loading="lazy" height={18}/>
                 <div className="xp-meta">
@@ -280,21 +248,18 @@ export default function App(){
         </div>
       </section>
 
-      <SectionBreak />
+      <div className="break" aria-hidden="true" />
 
       {/* WORK */}
       <section id="work" className="section" aria-labelledby="work-heading">
         <motion.h2 id="work-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Selected Work</motion.h2>
         <div className="work-grid" role="list">
           {projects.map(p=>(
-            <motion.article
-              key={p.id}
-              className="card" role="listitem" aria-label={`${p.title} — ${p.role}`}
+            <motion.article key={p.id} className="card" role="listitem"
               variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.35}}
-              whileHover={useReducedMotion() ? {} : { y: -4, boxShadow: '0 10px 24px rgba(0,0,0,.12)' }}
-              transition={useReducedMotion() ? {duration:0}:{duration:.25}}
-              onClick={() => openModal(p,0)}
-            >
+              whileHover={reduceMotion ? {} : { y: -4, boxShadow: '0 10px 24px rgba(0,0,0,.12)' }}
+              transition={reduceMotion ? {duration:0}:{duration:.25}}
+              onClick={() => openModal(p,0)}>
               <div className="card-head">
                 <img className="company-logo" src={`${import.meta.env.BASE_URL}logos/${p.logo}`} alt={`${p.brand} logo`} loading="lazy" height={20}/>
               </div>
@@ -312,7 +277,7 @@ export default function App(){
         </div>
       </section>
 
-      <SectionBreak />
+      <div className="break" aria-hidden="true" />
 
       {/* SKILLS */}
       <section id="skills" className="section" aria-labelledby="skills-heading">
@@ -325,7 +290,7 @@ export default function App(){
         </motion.p>
       </section>
 
-      <SectionBreak />
+      <div className="break" aria-hidden="true" />
 
       {/* CONTACT */}
       <section id="contact" className="section" aria-labelledby="contact-heading">
@@ -336,9 +301,9 @@ export default function App(){
         </motion.p>
       </section>
 
-      {/* section dots */}
+      {/* dots nav */}
       <nav className="dots" aria-label="Section navigation">
-        {['about','experience','work','skills','contact'].map(id=>(
+        {sections.map(id=>(
           <a key={id} href={`#${id}`} className={`dot ${active===id?'active':''}`}
              aria-label={`Jump to ${id} section`} aria-current={active===id?'page':undefined}/>
         ))}
