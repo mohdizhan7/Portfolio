@@ -228,7 +228,7 @@ export default function App(){
       <div className="break" aria-hidden="true" />
 
       {/* EXPERIENCE — responsive grid */}
-      <section id="experience" className="section" aria-labelledby="exp-heading">
+      <section id="experience" className="section section--surface" aria-labelledby="exp-heading">
         <motion.h2 id="exp-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Experience</motion.h2>
         <div className="xp-row" role="list">
           {experience.map((x)=>(
@@ -251,7 +251,7 @@ export default function App(){
       <div className="break" aria-hidden="true" />
 
       {/* WORK */}
-      <section id="work" className="section" aria-labelledby="work-heading">
+      <section id="work" className="section section--surface" aria-labelledby="work-heading">
         <motion.h2 id="work-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Selected Work</motion.h2>
         <div className="work-row" role="list">
           {projects.map(p=>(
