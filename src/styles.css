@@ -1,19 +1,20 @@
 :root{
-  /* Palette (Apple-ish) */
-  --bg:#fbfbfd;                 /* off-white */
-  --ink:#0b0b0c;                /* deep text */
-  --muted:#6e6e73;              /* system muted gray */
-  --edge:#e5e5ea;               /* subtle borders */
-  --panel:rgba(255,255,255,.86);
-  --accent-1:#0071e3;           /* Apple blue */
-  --accent-2:#6e5ce6;           /* indigo */
+  --bg:#fbfbfd; --ink:#0b0b0c; --muted:#6e6e73; --edge:#e5e5ea; --panel:rgba(255,255,255,.86);
+  --accent-1:#0071e3; --accent-2:#6e5ce6; /* default indigo */
   --accent-grad: linear-gradient(135deg,var(--accent-1),var(--accent-2));
 }
+/* accent themes */
+:root[data-accent="indigo"]{ --accent-1:#0071e3; --accent-2:#6e5ce6; }
+:root[data-accent="green"] { --accent-1:#0a7c48; --accent-2:#2cd05a; }
+:root[data-accent="pink"]  { --accent-1:#ff3b6e; --accent-2:#ff7ab5; }
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+html{scroll-behavior:smooth; scroll-snap-type: y proximity;}
 body{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Inter,Arial,sans-serif;
-  color:var(--ink); background:
+  color:var(--ink);
+  background:
     radial-gradient(1200px 800px at 20% -10%, #e6f0ff 0%, transparent 32%),
     radial-gradient(900px 600px at 90% 0%, #ede9fe 0%, transparent 26%),
     var(--bg);
@@ -28,12 +29,16 @@ hr{border:0;border-top:1px solid var(--edge);margin:32px 0}
   position:sticky; top:12px; z-index:50; margin:10px 0 0;
   backdrop-filter:saturate(180%) blur(14px);
   background:var(--panel); border:1px solid rgba(0,0,0,.06);
-  border-radius:16px; padding:10px 14px;
-  box-shadow:0 8px 30px rgba(0,0,0,.06);
+  border-radius:16px; padding:10px 14px; box-shadow:0 8px 30px rgba(0,0,0,.06);
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .nav a{padding:6px 10px;border-radius:10px}
 .nav a:hover{background:rgba(0,0,0,.05)}
+.swatches{display:flex;gap:8px;align-items:center}
+.swatch{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);cursor:pointer}
+.swatch.indigo{background:linear-gradient(135deg,#0071e3,#6e5ce6)}
+.swatch.green{ background:linear-gradient(135deg,#0a7c48,#2cd05a)}
+.swatch.pink{  background:linear-gradient(135deg,#ff3b6e,#ff7ab5)}
 
 /* scroll progress */
 .progress{position:fixed;left:0;top:0;height:2px;background:var(--accent-grad);width:0;z-index:60}
@@ -45,19 +50,19 @@ h1{font-size:clamp(32px,4.2vw,56px);line-height:1.05;margin:0 0 8px}
 .title{margin:0;color:var(--muted);font-weight:700}
 .tagline{margin:12px 0 0;color:var(--muted)}
 .cta{display:flex;gap:12px;margin-top:18px}
-.btn{border:1px solid #000;border-radius:999px;padding:10px 16px;font-weight:600;transition:.25s ease; display:inline-block}
+.btn{border:1px solid #000;border-radius:999px;padding:10px 16px;font-weight:600;transition:.25s ease;display:inline-block}
 .btn:hover{transform:translateY(-2px)}
 .btn--ghost{border-color:var(--edge);color:var(--muted)}
 .btn--primary{border:0;background:var(--accent-grad);color:#fff;box-shadow:0 8px 24px rgba(0,113,227,.25)}
 .btn--primary:hover{filter:saturate(110%)}
 
 /* sections */
-.section{padding:28px 8px}
+.section{padding:28px 8px; scroll-snap-align: start; scroll-margin-top: 80px;}
 .section h2{font-size:22px;margin:0 0 12px}
 .muted{color:var(--muted)}
 ul{margin:10px 0 0 18px;line-height:1.6}
 
-/* cards with gradient border */
+/* cards */
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .card{
   position:relative;border-radius:14px;padding:14px;background:var(--panel);
@@ -75,6 +80,11 @@ ul{margin:10px 0 0 18px;line-height:1.6}
 .dashlist li{position:relative;padding-left:16px;margin:6px 0}
 .dashlist li::before{content:"—";position:absolute;left:0;color:var(--muted)}
 .pill{display:inline-block;font-size:12px;padding:4px 8px;border:1px solid #000;border-radius:999px;margin:4px 0 6px;font-weight:600}
+
+/* right-side scroll dots */
+.dots{position:fixed; right:16px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:55}
+.dot{width:8px;height:8px;border-radius:50%; background:#c7c7cc; border:1px solid rgba(0,0,0,.1)}
+.dot.active{background:transparent; border-color:transparent; box-shadow:0 0 0 2px var(--edge), 0 0 0 6px rgba(0,0,0,.06), inset 0 0 0 8px var(--accent-1)}
 
 /* small */
 @media (max-width:700px){
