@@ -14,6 +14,8 @@ const fadeUp = {
   hidden: { opacity: 0, y: 16 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
+const stagger = { show: { transition: { staggerChildren: 0.08 } } };
+const rise = { hidden: { opacity:0, y: 8 }, show: { opacity:1, y:0, transition: { duration: .45, ease:'easeOut' } } };
 
 type MagnetProps = Omit<HTMLMotionProps<'a'>, 'ref'>;
 function Magnet(props: MagnetProps) {
@@ -34,8 +36,18 @@ function Magnet(props: MagnetProps) {
   );
 }
 
-const projects = [
+type Project = {
+  id: string;
+  title: string;
+  role: string;
+  bullets: string[];
+  impact: string;
+  thumb: string;
+  gallery: string[];
+};
+const projects: Project[] = [
   {
+    id: 'itc',
     title: 'ITC — WMS/TMS Site Setup & Ops Ramp',
     role: 'Assistant Project Manager · StackBOX',
     bullets: [
@@ -43,17 +55,23 @@ const projects = [
       'CAPEX variance held within ±2%; SOPs/KPIs fully adopted.',
     ],
     impact: 'Owned BRD→SOP/KPI design, testing, deployment & governance.',
+    thumb: 'projects/itc-thumb.svg',
+    gallery: ['projects/itc-1.svg','projects/itc-2.svg'],
   },
   {
+    id: 'pg',
     title: 'P&G Philippines — Rendering Process Optimisation',
     role: 'Project Manager / Account Lead',
     bullets: [
-      'Throughput +14%, exceptions -22% via tuned rules & exception dashboards.',
+      'Throughput +14%, exceptions -22% via tuned rules & dashboards.',
       'Upskilled floor teams; KPI uplift sustained post-rollout.',
     ],
     impact: 'Led AS-IS→TO-BE, config, dashboards and rollout oversight.',
+    thumb: 'projects/pg-thumb.svg',
+    gallery: ['projects/pg-1.svg','projects/pg-2.svg'],
   },
   {
+    id: 'dtdc',
     title: 'DTDC — COVID Backlog Clearance',
     role: 'Branch / Ops Manager',
     bullets: [
@@ -61,8 +79,10 @@ const projects = [
       'On-time rate restored via routing & shift re-orchestration.',
     ],
     impact: 'Partner network + routing optimization under constraints.',
+    thumb: 'projects/dtdc-thumb.svg',
+    gallery: ['projects/dtdc-1.svg','projects/dtdc-2.svg'],
   },
-] as const;
+];
 
 export default function App() {
   type Theme = 'light' | 'dark';
@@ -112,6 +132,27 @@ export default function App() {
 
   const resumeUrl = `${import.meta.env.BASE_URL}Izhan-Resume.pdf`;
 
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalIdx, setModalIdx] = useState(0);
+  const [current, setCurrent] = useState<Project | null>(null);
+  function openModal(p: Project, start = 0) { setCurrent(p); setModalIdx(start); setModalOpen(true); }
+  function closeModal(){ setModalOpen(false); }
+
+  useEffect(()=>{
+    if(!modalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if(e.key === 'Escape') closeModal();
+      if(!current) return;
+      if(e.key === 'ArrowLeft')  setModalIdx(i => Math.max(0, i-1));
+      if(e.key === 'ArrowRight') setModalIdx(i => Math.min(current.gallery.length-1, i+1));
+    };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prevOverflow; };
+  },[modalOpen, current]);
+
   return (
     <main>
       <div className="progress" style={{ width: `${progress}%` }} />
@@ -146,6 +187,8 @@ export default function App() {
       </div>
 
       <section className="hero" ref={heroRef}>
+        <div className="hero-bg" aria-hidden="true"></div>
+
         <picture>
           <source
             srcSet={`${import.meta.env.BASE_URL}izhan.webp`}
@@ -171,19 +214,19 @@ export default function App() {
 
         <motion.div
           style={{ y: textY }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.05 }}
+          variants={stagger}
+          initial="hidden"
+          animate="show"
         >
-          <h1>Mohd Izhan Shaikh</h1>
-          <p className="title">Assistant Project Manager, StackBOX — Supply Chain &amp; Project Delivery</p>
-          <p className="tagline">
+          <motion.h1 variants={rise}>Mohd Izhan Shaikh</motion.h1>
+          <motion.p className="title" variants={rise}>Assistant Project Manager, StackBOX — Supply Chain &amp; Project Delivery</motion.p>
+          <motion.p className="tagline" variants={rise}>
             I design SOPs/KPIs and scale WMS/TMS rollouts for FMCG — <strong>-22% cost-to-serve</strong>, <strong>+14% throughput</strong>, cleaner handoffs.
-          </p>
-          <div className="cta" role="group" aria-label="Primary call to action" style={{display:'flex',flexDirection:'column',gap:8,alignItems:'flex-start'}}>
+          </motion.p>
+          <motion.div className="cta" role="group" aria-label="Primary call to action" style={{display:'flex',flexDirection:'column',gap:8,alignItems:'flex-start'}} variants={rise}>
             <Magnet href="#work" className="btn btn--primary">View Work</Magnet>
             <a href="#contact" className="link">Or, contact me →</a>
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -210,7 +253,7 @@ export default function App() {
           <h3>StackBOX — Assistant Project Manager</h3>
           <p className="muted">Sep 2023 – Present</p>
           <ul>
-            <li>ITC lead across two sites; end-to-end process design, SOPs/KPIs, cost management.</li>
+            <li>ITC Account Lead across two sites; end-to-end process design, SOPs/KPIs, cost management.</li>
             <li>Own BRDs, testing, deployments; coordinate product &amp; dev for on-time delivery.</li>
             <li>P&amp;G (PH/IN): optimize rendering; scalable rollouts and operational success.</li>
           </ul>
@@ -254,7 +297,12 @@ export default function App() {
               viewport={{ once: true, amount: 0.35 }}
               whileHover={reduceMotion ? {} : { y: -4, boxShadow: '0 10px 24px rgba(0,0,0,.12)' }}
               transition={reduceMotion ? { duration: 0 } : { duration: 0.25 }}
+              onClick={() => openModal(p, 0)}
             >
+              <div className="card-media" aria-hidden="true">
+                <img className="cover" alt="" src={`${import.meta.env.BASE_URL}${p.thumb}`} loading="lazy" decoding="async" />
+                <button className="viewcase" type="button" onClick={(e)=>{ e.stopPropagation(); openModal(p, 0); }}>View case →</button>
+              </div>
               <h3>{p.title}</h3>
               <p className="muted">{p.role}</p>
               <ul className="dashlist">
@@ -304,6 +352,23 @@ export default function App() {
           />
         ))}
       </nav>
+
+      {modalOpen && current && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={`${current.title} gallery`}
+             onClick={(e)=>{ if(e.target === e.currentTarget) closeModal(); }}>
+          <div className="modal__content">
+            <button className="modal__close" aria-label="Close" onClick={closeModal}>×</button>
+            <img src={`${import.meta.env.BASE_URL}${current.gallery[modalIdx]}`}
+                 alt={`${current.title} image ${modalIdx+1}`} />
+            <div className="modal__controls">
+              <button onClick={()=>setModalIdx(i=>Math.max(0,i-1))} disabled={modalIdx===0} aria-label="Previous image">‹</button>
+              <span>{modalIdx+1}/{current.gallery.length}</span>
+              <button onClick={()=>setModalIdx(i=>Math.min(current.gallery.length-1,i+1))}
+                      disabled={modalIdx===current.gallery.length-1} aria-label="Next image">›</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
