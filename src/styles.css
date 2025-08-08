@@ -223,3 +223,18 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:8
 /* keep meta tidy: logo + flag + period */
 .meta{ display:flex; align-items:center; gap:8px; }
 .meta-dot{ opacity:.45 }
+/* ---- Experience / Work listlines: no bullets, cleaner rhythm ---- */
+.card .dashlist{ list-style:none; padding:0; margin:10px 0 14px; }
+.card .dashlist li{ margin:10px 0; padding:0; }
+
+/* meta line reads: Logo · Flag · Period · Tenure */
+.xp-meta,.meta{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.meta-dot{ opacity:.5 } /* already used */
+.meta-period,.meta-tenure{ opacity:.9 }
+
+/* small breathing room between title and meta */
+.card h3 + .xp-meta,
+.card h3 + .meta{ margin-top:6px; }
+
+/* keep readability on dense points */
+.card p, .card li{ line-height:1.6 }
