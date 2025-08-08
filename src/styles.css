@@ -323,3 +323,53 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 .trust-logos li img:hover{filter:none;opacity:.9}
 .card-head{display:flex;align-items:center;justify-content:flex-start;margin-bottom:8px}
 .company-logo{height:20px;width:auto;opacity:.9}
+
+:root[data-accent="indigo"]{ --glow-a:#6e6eff; --glow-b:#9aa2ff; }
+:root[data-accent="green"]{  --glow-a:#2ec27e; --glow-b:#8cd9b3; }
+:root[data-accent="pink"]{   --glow-a:#ff6ea6; --glow-b:#ffb3d1; }
+
+.hero{ position:relative; overflow:hidden; }
+.hero .hero-bg{
+  position:absolute; inset:-12%;
+  background:
+    radial-gradient(60% 40% at 10% 0%, color-mix(in oklab, var(--glow-a) 35%, transparent) 0%, transparent 70%),
+    radial-gradient(60% 50% at 90% 20%, color-mix(in oklab, var(--glow-b) 25%, transparent) 0%, transparent 70%);
+  filter: blur(44px); opacity:.6; transform:translateZ(0);
+  pointer-events:none; z-index:0;
+}
+.hero > *{ position:relative; z-index:1; }
+
+/* Work grid */
+.work-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(16px,2vw,24px); align-items:stretch; }
+@media (max-width:640px){ .work-grid{ grid-template-columns:1fr; } }
+
+/* Card media + hover */
+.card-media{ position:relative; overflow:hidden; border-radius:14px; margin-bottom:12px; }
+.card-media img{ display:block; width:100%; height:auto; }
+.viewcase{
+  position:absolute; left:12px; bottom:12px; padding:8px 12px; border-radius:999px;
+  background: var(--panel); border:1px solid var(--edge); color: var(--ink);
+  font-weight:600; opacity:0; transform:translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.card:hover .viewcase, .card:focus-within .viewcase{ opacity:1; transform:translateY(0); }
+
+/* Modal */
+.modal{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; padding:16px; z-index:100; }
+.modal__content{ position:relative; width:min(1000px,96vw); background:var(--panel); border:1px solid var(--edge); border-radius:16px; padding:16px; }
+.modal__content img{ width:100%; height:auto; display:block; border-radius:12px; }
+.modal__controls{ display:flex; gap:12px; align-items:center; justify-content:space-between; margin-top:10px; }
+.modal__controls button{ padding:8px 10px; border-radius:10px; background:transparent; color:var(--ink); border:1px solid var(--edge); cursor:pointer; }
+.modal__controls button[disabled]{ opacity:.4; cursor:default; }
+.modal__close{ position:absolute; top:12px; right:12px; width:36px; height:36px; line-height:34px; border-radius:999px; background:transparent; color:var(--ink); border:1px solid var(--edge); cursor:pointer; }
+.modal__close:focus-visible, .modal__controls button:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+@media (max-width:700px){ .modal__content{ padding:12px; } }
+
+/* Trust strip + logos */
+.trust{display:flex;align-items:center;gap:20px;padding:clamp(12px,2vw,20px) 0;margin:8px 0 4px}
+.trust-label{color:var(--muted);font-size:14px;white-space:nowrap}
+.trust-logos{display:flex;gap:clamp(16px,3vw,36px);align-items:center;list-style:none;margin:0;padding:0;filter:grayscale(1) opacity(.7)}
+.trust-logos li img{height:24px;display:block}
+.trust-logos li img:hover{filter:none;opacity:.9}
+.card-head{display:flex;align-items:center;justify-content:flex-start;margin-bottom:8px}
+.company-logo{height:20px;width:auto;opacity:.9}
