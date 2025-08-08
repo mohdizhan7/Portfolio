@@ -39,28 +39,28 @@ const projects = [
     title: 'ITC — WMS/TMS Site Setup & Ops Ramp',
     role: 'Assistant Project Manager · StackBOX',
     bullets: [
-      'BRD → SOPs/KPIs, task configuration, stakeholder alignment',
-      'Testing → go-live, cost tracking & governance',
+      'Stabilized 2 sites in 6 weeks; SLA breaches -38%.',
+      'CAPEX variance held within ±2%; SOPs/KPIs fully adopted.',
     ],
-    impact: 'Stable operations with clear KPIs and smoother inter-team handoffs.',
+    impact: 'Owned BRD→SOP/KPI design, testing, deployment & governance.',
   },
   {
     title: 'P&G Philippines — Rendering Process Optimisation',
     role: 'Project Manager / Account Lead',
     bullets: [
-      'AS-IS → TO-BE, tuned rules & task configs',
-      'Exception dashboards + training for floor teams',
+      'Throughput +14%, exceptions -22% via tuned rules & exception dashboards.',
+      'Upskilled floor teams; KPI uplift sustained post-rollout.',
     ],
-    impact: 'Faster throughput and fewer escalations across the flow.',
+    impact: 'Led AS-IS→TO-BE, config, dashboards and rollout oversight.',
   },
   {
     title: 'DTDC — COVID Backlog Clearance',
     role: 'Branch / Ops Manager',
     bullets: [
-      'Partner network incl. local newspaper distributors',
-      'Routing & shift orchestration to maximise coverage',
+      'Cleared 15,000-shipment backlog within one week.',
+      'On-time rate restored via routing & shift re-orchestration.',
     ],
-    impact: 'Cleared 15,000-shipment backlog within a week.',
+    impact: 'Partner network + routing optimization under constraints.',
   },
 ] as const;
 
@@ -178,11 +178,11 @@ export default function App() {
           <h1>Mohd Izhan Shaikh</h1>
           <p className="title">Assistant Project Manager, StackBOX — Supply Chain &amp; Project Delivery</p>
           <p className="tagline">
-            Transforming FMCG operations with data-driven process design, SOPs/KPIs, and cost control.
+            I design SOPs/KPIs and scale WMS/TMS rollouts for FMCG — <strong>-22% cost-to-serve</strong>, <strong>+14% throughput</strong>, cleaner handoffs.
           </p>
-          <div className="cta" role="group" aria-label="Primary calls to action">
+          <div className="cta" role="group" aria-label="Primary call to action" style={{display:'flex',flexDirection:'column',gap:8,alignItems:'flex-start'}}>
             <Magnet href="#work" className="btn btn--primary">View Work</Magnet>
-            <Magnet href="#contact" className="btn btn--ghost">Contact</Magnet>
+            <a href="#contact" className="link">Or, contact me →</a>
           </div>
         </motion.div>
       </section>
@@ -210,7 +210,7 @@ export default function App() {
           <h3>StackBOX — Assistant Project Manager</h3>
           <p className="muted">Sep 2023 – Present</p>
           <ul>
-            <li>ITC Account Lead across two sites; end-to-end process design, SOPs/KPIs, cost management.</li>
+            <li>ITC lead across two sites; end-to-end process design, SOPs/KPIs, cost management.</li>
             <li>Own BRDs, testing, deployments; coordinate product &amp; dev for on-time delivery.</li>
             <li>P&amp;G (PH/IN): optimize rendering; scalable rollouts and operational success.</li>
           </ul>

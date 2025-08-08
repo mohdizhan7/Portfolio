@@ -181,3 +181,35 @@ ul{margin:10px 0 0 18px; line-height:1.6}
     background: color-mix(in oklab, var(--ink) 10%, transparent);
   }
 }
+/* === Mobile/nav polish ================================================ */
+/* iOS notch safe-area for sticky nav */
+.nav{ top: calc(env(safe-area-inset-top) + 8px); z-index: 50; }
+
+/* Make nav scrollable instead of wrapping on phones */
+@media (max-width: 700px){
+  .nav-inner{ overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .nav-inner::-webkit-scrollbar{ display:none; }
+  /* Hide accent swatches + theme toggle to reduce clutter */
+  .swatches, .theme-toggle{ display:none; }
+  /* Comfier tap targets */
+  .nav a{ padding:10px 12px; }
+}
+
+/* Bigger CTA tap targets on phones */
+@media (max-width: 700px){
+  .cta .btn{ min-height:48px; font-size:16px; padding:14px 16px; border-radius:14px; }
+}
+
+/* Hide section dots on very small screens */
+@media (max-width: 480px){ .dots{ display:none; } }
+
+/* Inline link under CTA */
+.link{
+  text-decoration: underline;
+  color: var(--ink);
+  opacity:.85;
+}
+.link:hover{ opacity:1; }
+
+/* Hide dots on small phones */
+@media (max-width: 640px){ .dots{ display:none; } }
