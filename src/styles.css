@@ -261,3 +261,40 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:8
 /* Ensure no pseudo-bullets sneak back */
 .card .dashlist{ list-style:none; padding:0; margin:10px 0 14px; }
 .card .dashlist li::before{ content:none !important; }
+/* --- Smooth, uniform top spacing & hero flow --- */
+:root{
+  --safe-top: env(safe-area-inset-top, 0px);
+  --space-1: clamp(12px, 1.6vw, 20px);
+  --space-2: clamp(16px, 2.4vw, 28px);
+  --hero-pt: clamp(72px, 9vw, 140px);
+  --hero-pr: clamp(20px, 4vw, 48px);
+  --hero-pb: clamp(36px, 6vw, 72px);
+}
+
+/* breathing room above nav and between nav → hero */
+.nav{ margin-top: calc(var(--safe-top) + var(--space-1)); }
+.nav + .hero{ margin-top: var(--space-2); }
+
+/* hero gets generous top padding + rounded corners */
+.hero{
+  position: relative;
+  padding: var(--hero-pt) var(--hero-pr) var(--hero-pb);
+  border-radius: 28px;
+}
+
+/* subtle fade at the top so it blends instead of a hard edge */
+.hero::after{
+  content:"";
+  position:absolute;
+  left:-24px; right:-24px; top:-24px; height:48px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+  pointer-events:none;
+  border-radius: 32px;
+  opacity:.55;
+  filter: blur(1px);
+}
+
+/* mobile tweak */
+@media (max-width: 640px){
+  .hero{ border-radius: 20px; }
+}
