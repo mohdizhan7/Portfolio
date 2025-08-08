@@ -23,7 +23,7 @@ const CASES: Case[] = [
     year: '2023–24',
     flags: ['🇮🇳'],
     logo: '/logos/ITC_Limited_Logo.svg',
-    cover: '/covers/case-itc.jpg',
+    cover: 'work/itc-cover.jpg',
     summary:
       'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.',
     bullets: [
@@ -40,7 +40,7 @@ const CASES: Case[] = [
     year: '2023–24',
     flags: ['🇵🇭'],
     logo: '/logos/Procter_&_Gamble_logo.svg.png',
-    cover: '/covers/case-pg.jpg',
+    cover: 'work/pg-cover.jpg',
     summary:
       'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.',
     bullets: [
@@ -56,7 +56,7 @@ const CASES: Case[] = [
     year: '2020',
     flags: ['🇮🇳'],
     logo: '/logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif',
-    cover: '/covers/case-dtdc.jpg',
+    cover: 'work/dtdc-cover.jpg',
     summary:
       'Partner network + routing & shift orchestration to clear backlog quickly.',
     bullets: [
@@ -170,7 +170,7 @@ export default function App() {
               <article className="exp">
                 <div className="expTop">
                   <div className="expBrand">
-                    <img src="/logos/SBX Logo_PNG2.png" alt="StackBOX" className="logo pill" />
+                    <img src={logos.stackbox} alt="StackBOX" className="logo pill" />
                     <h3>StackBOX</h3>
                   </div>
                   <div className="expTime">Sep 2023 – Present · 🇮🇳</div>
@@ -186,7 +186,7 @@ export default function App() {
               <article className="exp">
                 <div className="expTop">
                   <div className="expBrand">
-                    <img src="/logos/edgistify.png" alt="Edgistify" className="logo pill" />
+                    <img src={logos.edgistify} alt="Edgistify" className="logo pill" />
                     <h3>Edgistify</h3>
                   </div>
                   <div className="expTime">Aug 2022 – Sep 2023 · 🇮🇳</div>
@@ -201,7 +201,7 @@ export default function App() {
               <article className="exp">
                 <div className="expTop">
                   <div className="expBrand">
-                    <img src="/logos/300967522_509073977885691_1283772767524283947_n.png" alt="Mindseed Education" className="logo pill" />
+                    <img src={logos.mindseed} alt="Mindseed Education" className="logo pill" />
                     <h3>Mindseed Education</h3>
                   </div>
                   <div className="expTime">Dec 2021 – Aug 2022 · 🇮🇳</div>
@@ -216,7 +216,7 @@ export default function App() {
               <article className="exp">
                 <div className="expTop">
                   <div className="expBrand">
-                    <img src="/logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif" alt="DTDC" className="logo pill" />
+                    <img src={logos.dtdc} alt="DTDC" className="logo pill" />
                     <h3>DTDC</h3>
                   </div>
                   <div className="expTime">Jan 2020 – Dec 2021 · 🇮🇳</div>
