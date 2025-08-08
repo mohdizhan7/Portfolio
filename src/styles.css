@@ -316,3 +316,10 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 /* Body grows; footer pins to bottom for equal visual height */
 .card .body{ flex:1; display:flex; flex-direction:column; row-gap:10px; }
 .card .footer{ margin-top:auto; padding-top:8px; }
+.trust{display:flex;align-items:center;gap:20px;padding:clamp(12px,2vw,20px) 0;margin:8px 0 4px}
+.trust-label{color:var(--muted);font-size:14px;white-space:nowrap}
+.trust-logos{display:flex;gap:clamp(16px,3vw,36px);align-items:center;list-style:none;margin:0;padding:0;filter:grayscale(1) opacity(.7)}
+.trust-logos li img{height:24px;display:block}
+.trust-logos li img:hover{filter:none;opacity:.9}
+.card-head{display:flex;align-items:center;justify-content:flex-start;margin-bottom:8px}
+.company-logo{height:20px;width:auto;opacity:.9}
