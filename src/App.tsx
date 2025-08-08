@@ -157,20 +157,25 @@ export default function App() {
 
       {/* hero */}
       <section className="hero" ref={heroRef}>
-        <motion.img
-          src={`${import.meta.env.BASE_URL}izhan.jpg`}
-          alt="Mohd Izhan Shaikh"
-          className="avatar"
-          width={80}
-          height={80}
-          decoding="async"
-          loading="eager"
-          fetchPriority="high"
-          style={{ y: imgY }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        />
+<picture>
+  <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
+<picture>
+  <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
+  <motion.img
+    src={`${import.meta.env.BASE_URL}izhan.jpg`}
+    alt="Mohd Izhan Shaikh"
+    className="avatar"
+    width={80}
+    height={80}
+    decoding="async"
+    loading="eager"
+    fetchPriority="high"
+    style={{ y: imgY }}
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+  />
+</picture>
         <motion.div
           style={{ y: textY }}
           initial={{ opacity: 0 }}
