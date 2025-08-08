@@ -179,7 +179,7 @@ export default function App(){
           {projects.map(p=>{
             const c = companies[p.brand];
             return (
-              <article key={p.id} className="card">
+              <article key={p.id} className="card card--clickable" role="button" tabIndex={0} onClick={()=>setActive(p)} onKeyDown={(e)=>{if(e.key==='Enter') setActive(p);}}>
                 <div className="card-media"><img src={`${import.meta.env.BASE_URL}${p.cover}`} alt="" loading="lazy" decoding="async"/></div>
                 <div className="card-body">
                   <div className="meta">
@@ -192,7 +192,7 @@ export default function App(){
                   </div>
                   <h3>{p.title}</h3>
                   <p className="muted">{p.summary}</p>
-                  <button className="btn btn--ghost" onClick={()=>setActive(p)}>Read case study</button>
+                  <button className="btn btn--ghost" aria-label="Open case study" onClick={(e)=>{e.stopPropagation(); setActive(p);}}>Read case study →</button>
                 </div>
               </article>
             );
