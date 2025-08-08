@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, type HTMLMotionProps, useMotionValue, useSpring } from 'framer-motion';
 import './styles.css';
 
@@ -19,8 +19,8 @@ const companies = {
   stackbox:  { name:'StackBOX',  logo:'logos/stackbox.png', flag:'🇮🇳' },
   edgistify: { name:'Edgistify', logo:'logos/edgistify.png', flag:'🇮🇳' },
   dtdc:      { name:'DTDC',      logo:'logos/dtdc.avif',    flag:'🇮🇳' },
-  itc:       { name:'ITC',       logo:'logos/placeholder.svg', flag:'🇮🇳' },   // no real file yet
-  pg:        { name:'P&G',       logo:'logos/placeholder.svg', flag:'🇵🇭' },   // Philippines
+  itc:       { name:'ITC',       logo:'logos/itc.svg',      flag:'🇮🇳' },
+  pg:        { name:'P&G',       logo:'logos/pg.png',       flag:'🇵🇭' },
   mindseed:  { name:'Mindseed Education', logo:'logos/placeholder.svg', flag:'🇮🇳' },
 } as const;
 
@@ -35,39 +35,88 @@ const projects: Project[] = [
     id:'itc', brand:'itc', period:'2023–24',
     title:'WMS/TMS Site Setup & Operational Ramp',
     summary:'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.',
-    cover:'logos/dtdc.jpg',   // (swapped) warehouse conveyor image
-    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
+    cover:'logos/dtdc.jpg',
+    caseStudy:{
+      context:'ITC required rapid stand-up of two warehouses with clear KPIs and governance.',
+      role:'Assistant Project Manager (StackBOX), cross-functional with product/ops.',
+      actions:[
+        'Wrote BRDs; translated to SOPs/KPIs and task configurations.',
+        'Coordinated UAT, cutover, training and hyper-care.',
+        'Set up cost tracking and cadence reviews.'
+      ],
+      outcomes:[
+        'Stable handoffs across teams; smoother daily governance.',
+        'SOP/KPI adoption and faster onboarding of floor teams.'
+      ],
+      tools:['WMS/TMS','SOP/KPI playbooks','Dashboards']
+    }
   },
   {
     id:'pg', brand:'pg', period:'2023–24',
     title:'Rendering Optimisation (Philippines)',
     summary:'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.',
-    cover:'logos/itc.jpg',    // (swapped) bins image
-    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
+    cover:'logos/itc.jpg',
+    caseStudy:{
+      context:'Rendering exceptions and throughput variability created delays.',
+      role:'Account Lead / PM for the PH program.',
+      actions:[
+        'Mapped AS-IS vs TO-BE; adjusted rendering rules and SLAs.',
+        'Built exception dashboards; trained floor supervisors.',
+        'Drove rollout across lanes with change-management.'
+      ],
+      outcomes:[
+        'Throughput uplift with fewer escalations.',
+        'Sustained KPI improvement post-rollout.'
+      ],
+      tools:['Process maps','Exception dashboards','Training kits']
+    }
   },
   {
     id:'dtdc', brand:'dtdc', period:'2020',
     title:'COVID Backlog Clearance',
     summary:'Partner network + routing & shift orchestration to clear backlog quickly.',
-    cover:'logos/pg.jpg',     // (swapped) people on conveyor image
-    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
+    cover:'logos/pg.jpg',
+    caseStudy:{
+      context:'Branch faced a COVID-era delivery backlog.',
+      role:'Branch/Ops Manager leading a 25-member team.',
+      actions:[
+        'Set up partner coverage (incl. newspaper distributors).',
+        'Planned routing, shifts and daily targets; triaged issues.',
+        'Implemented on-floor dashboards and RCA loops.'
+      ],
+      outcomes:[
+        'Backlog cleared within a week.',
+        'Service levels and on-time rate restored.'
+      ],
+      tools:['Routing plans','Control tower','RCA + 5S']
+    }
   }
 ];
 
-const xp = [
-  { company:'stackbox', title:'Assistant Project Manager — Supply Chain & Delivery', period:'Sep 2023 – Present',
+type Xp = { company:keyof typeof companies; title:string; period:string; duration:string; bullets:string[] };
+const xp: Xp[] = [
+  { company:'stackbox', title:'Assistant Project Manager — Supply Chain & Delivery', period:'Sep 2023 – Present', duration:'1 yr 11 mo',
     bullets:[
       'End-to-end launches: BRDs, SOP/KPI design, UAT, go-live, governance.',
       'Account lead for P&G PH rendering optimisation (rules, dashboards, training).',
       'Cost tracking and inter-team coordination for on-time deployments.'
-    ] },
-  { company:'edgistify', title:'Manager, Solution Design', period:'Aug 2022 – Sep 2023',
-    bullets:['Designed supply-chain solutions to improve KPIs and reduce costs.','Drove vendor alignment and stakeholder buy-in for rollouts.'] },
-  { company:'mindseed', title:'Manager, Procurement & Supply Chain', period:'Dec 2021 – Aug 2022',
-    bullets:['Owned procurement strategy, benchmarking & cost analysis.','End-to-end operational oversight and supplier performance.'] },
-  { company:'dtdc', title:'Branch / Ops Manager', period:'Jan 2020 – Dec 2021',
-    bullets:['Cleared COVID backlog via routing & shift orchestration.','Dashboards, training and RCA to improve service levels.'] },
-] as const;
+    ]},
+  { company:'edgistify', title:'Manager, Solution Design', period:'Aug 2022 – Sep 2023', duration:'1 yr 2 mo',
+    bullets:[
+      'Designed supply-chain solutions to improve KPIs and reduce costs.',
+      'Drove vendor alignment and stakeholder buy-in for rollouts.'
+    ]},
+  { company:'mindseed', title:'Manager, Procurement & Supply Chain', period:'Dec 2021 – Aug 2022', duration:'9 mo',
+    bullets:[
+      'Owned procurement strategy, benchmarking & cost analysis.',
+      'End-to-end operational oversight and supplier performance.'
+    ]},
+  { company:'dtdc', title:'Branch / Ops Manager', period:'Jan 2020 – Dec 2021', duration:'2 yrs',
+    bullets:[
+      'Cleared COVID backlog via routing & shift orchestration.',
+      'Dashboards, training and RCA to improve service levels.'
+    ]},
+];
 
 function BrandMark({brand}:{brand:keyof typeof companies}){
   const c = companies[brand];
@@ -82,8 +131,15 @@ function BrandMark({brand}:{brand:keyof typeof companies}){
 }
 
 export default function App(){
-  const [accent,setAccent] = useState<'indigo'|'green'|'pink'>('indigo');
-  useEffect(()=>{ document.documentElement.setAttribute('data-accent',accent); },[accent]);
+  // lock a single accent (no color switchers)
+  useEffect(()=>{ document.documentElement.setAttribute('data-accent','indigo'); },[]);
+  const [active,setActive] = useState<Project|null>(null);
+
+  useEffect(()=>{
+    const onKey=(e:KeyboardEvent)=>{ if(e.key==='Escape') setActive(null); };
+    window.addEventListener('keydown',onKey);
+    return ()=>window.removeEventListener('keydown',onKey);
+  },[]);
 
   return (
     <main>
@@ -96,11 +152,6 @@ export default function App(){
             <a href="#experience">Experience</a>
             <a href="#education">Education</a>
             <a href="#contact">Contact</a>
-            <div className="swatches" role="group" aria-label="Accent">
-              <button className="swatch indigo" onClick={()=>setAccent('indigo')} aria-pressed={accent==='indigo'}/>
-              <button className="swatch green"  onClick={()=>setAccent('green')}  aria-pressed={accent==='green'}/>
-              <button className="swatch pink"   onClick={()=>setAccent('pink')}   aria-pressed={accent==='pink'}/>
-            </div>
           </nav>
         </div>
       </header>
@@ -141,7 +192,7 @@ export default function App(){
                   </div>
                   <h3>{p.title}</h3>
                   <p className="muted">{p.summary}</p>
-                  <a className="btn btn--ghost" href="#contact">Read case study</a>
+                  <button className="btn btn--ghost" onClick={()=>setActive(p)}>Read case study</button>
                 </div>
               </article>
             );
@@ -158,10 +209,13 @@ export default function App(){
             return (
               <article key={key} className="card xp-card">
                 <header className="xp-head">
-                  <h3 style={{display:'flex',alignItems:'center',gap:8}}>
+                  <h3 style={{display:'flex',alignItems:'center',gap:10}}>
                     <BrandMark brand={key} /> {c.name}
                   </h3>
-                  <span className="xp-period">{row.period} <span aria-hidden="true">•</span> <span className="meta-flag">{c.flag}</span></span>
+                  <span className="xp-period">
+                    {row.period} <span aria-hidden="true">•</span> <span className="meta-flag">{c.flag}</span>
+                    <span className="xp-duration"> — {row.duration}</span>
+                  </span>
                 </header>
                 <p className="muted">{row.title}</p>
                 <ul className="dashlist">{row.bullets.map(b=><li key={b}>{b}</li>)}</ul>
@@ -188,6 +242,30 @@ export default function App(){
           <a href="https://www.linkedin.com/in/mohd-izhan-shaikh-b2a615181" target="_blank" rel="noreferrer">LinkedIn</a>
         </p>
       </section>
+
+      {/* Case study modal */}
+      {active && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={`${active.title} — case study`} onClick={(e)=>{ if(e.target===e.currentTarget) setActive(null); }}>
+          <div className="modal__content">
+            <button className="modal__close" aria-label="Close" onClick={()=>setActive(null)}>×</button>
+            <h3 style={{marginTop:0}}>{active.title}</h3>
+            <div className="meta" style={{marginBottom:10}}>
+              <BrandMark brand={active.brand} />
+              <span className="meta-brand">{companies[active.brand].name}</span>
+              <span className="meta-dot">•</span>
+              <span className="meta-flag">{companies[active.brand].flag}</span>
+              {active.period && <><span className="meta-dot">•</span><span className="meta-period">{active.period}</span></>}
+            </div>
+            <p className="muted">{active.caseStudy.context}</p>
+            <p><strong>Role:</strong> {active.caseStudy.role}</p>
+            <h4>Actions</h4>
+            <ul className="dashlist">{active.caseStudy.actions.map(a=><li key={a}>{a}</li>)}</ul>
+            <h4>Outcomes</h4>
+            <ul className="dashlist">{active.caseStudy.outcomes.map(a=><li key={a}>{a}</li>)}</ul>
+            {active.caseStudy.tools?.length ? (<p className="muted"><strong>Tools:</strong> {active.caseStudy.tools.join(' · ')}</p>) : null}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
