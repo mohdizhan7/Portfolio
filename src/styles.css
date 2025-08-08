@@ -1,494 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Plus+Jakarta+Sans:wght@600;800&display=swap');
-
 :root{
-  --bg:#0b0d10; --panel:#101317; --edge:#1b2027; --ink:#e7eaef; --muted:#99a3af;
-  --accent:#6e6eff; --accent2:#9aa2ff;
-  color-scheme: dark light;
+  --bg:#0b0d10;
+  --bg-elev:#12141a;
+  --text:#e9ecf1;
+  --muted:#a7b0bd;
+  --line:rgba(255,255,255,.08);
+  --accent:#6b6bf9; /* single accent, no swatches */
+  --card:#151821;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
-:root[data-accent="green"]{ --accent:#2ec27e; --accent2:#8cd9b3; }
-:root[data-accent="pink"]{  --accent:#ff6ea6; --accent2:#ffb3d1; }
 
 *{box-sizing:border-box}
 html,body,#root{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial}
-main{max-width:1140px;margin:0 auto;padding:16px}
-h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,system-ui,-apple-system,"SF Pro Display",Segoe UI,Roboto,Helvetica,Arial}
-a{text-decoration:none;color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
-
-/* NAV */
-.nav{position:sticky;top:12px;z-index:10}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;background:color-mix(in oklab,var(--panel) 90%,transparent);border:1px solid var(--edge);border-radius:16px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.nav a{padding:6px 8px;opacity:.9}
-.swatches{display:flex;gap:8px;margin-left:8px}
-.swatch{width:12px;height:12px;border-radius:999px;border:1px solid var(--edge);background:var(--accent)}
-.swatch.green{background:#2ec27e}.swatch.pink{background:#ff6ea6}
-
-/* HERO */
-.hero-apple{position:relative;isolation:isolate;min-height:58vh;padding:64px 24px 48px;border-radius:26px;overflow:hidden;display:grid;place-items:center;text-align:center}
-.hero-glow{position:absolute;inset:-20%;background:
-  radial-gradient(55% 40% at 20% -10%,color-mix(in oklab,var(--accent) 35%,transparent) 0,transparent 70%),
-  radial-gradient(60% 50% at 80% 15%,color-mix(in oklab,var(--accent2) 25%,transparent) 0,transparent 72%);
-filter:blur(60px);opacity:.7;z-index:-1}
-.avatar-large{width:88px;height:88px;border-radius:999px;border:1px solid var(--edge);object-fit:cover;margin-bottom:10px}
-.hero-apple h1{font-size:clamp(36px,5.4vw,62px);letter-spacing:-.02em;margin:0 0 10px;font-weight:800}
-.hero-sub{max-width:900px;margin:0 auto 18px;color:var(--muted);font-size:clamp(16px,1.6vw,19px)}
-.btn{display:inline-block;padding:12px 18px;border-radius:14px;font-weight:600}
-.btn--primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 28px rgba(0,0,0,.25)}
-.btn--ghost{border:1px solid var(--edge);background:transparent;color:var(--ink)}
-
-/* SECTIONS */
-.section{padding:34px 8px;margin-top:22px}
-.section--center{text-align:center}
-.section-head{display:flex;gap:10px;align-items:baseline;justify-content:space-between;margin-bottom:8px}
-h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:800}
-.badge{border:1px solid var(--edge);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px}
-
-/* BENTO */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:120px;gap:16px;margin-top:10px}
-.tile{background:color-mix(in oklab,var(--panel) 92%,transparent);border:1px solid var(--edge);border-radius:18px;padding:18px}
-.tile h3{margin:0 0 6px}
-.t1{grid-column:span 6}.t2{grid-column:span 6}.t3{grid-column:span 4}.t4{grid-column:span 8}
-@media(max-width:900px){.bento{grid-template-columns:1fr;grid-auto-rows:auto}.t1,.t2,.t3,.t4{grid-column:auto}}
-
-/* WORK */
-.work-grid{display:grid;gap:22px;grid-template-columns:repeat(12,1fr)}
-.work-grid .card{grid-column:span 4;display:flex;flex-direction:column;background:color-mix(in oklab,var(--panel) 92%,transparent);border:1px solid var(--edge);border-radius:18px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
-.work-grid .card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.22)}
-.card-media img{display:block;width:100%;height:180px;object-fit:cover}
-.card-body{padding:16px}
-.meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-bottom:6px}
-.meta-logo{height:18px;width:auto;filter:grayscale(1) opacity(.9)}
-.meta-dot{opacity:.5;margin:0 2px}
-.meta-period{opacity:.8}
-.work-grid h3{margin:6px 0 6px;font-size:18px}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:var(--bg);
+  font:400 16px/1.6 ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Apple Color Emoji,Segoe UI Emoji;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 .muted{color:var(--muted)}
-@media(max-width:1000px){.work-grid .card{grid-column:span 6}}
-@media(max-width:640px){.work-grid .card{grid-column:1/-1}}
 
-/* EXPERIENCE */
-.xp-grid{display:grid;gap:22px;grid-template-columns:repeat(12,1fr)}
-.xp-card{grid-column:span 6;background:color-mix(in oklab,var(--panel) 92%,transparent);border:1px solid var(--edge);border-radius:18px;padding:18px}
-.xp-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.xp-period{color:var(--muted);font-size:12px;white-space:nowrap}
-.dashlist{margin:10px 0 0;padding-left:18px}
-.dashlist li{list-style:none;margin:6px 0;position:relative}
-.dashlist li::before{content:"—";position:absolute;left:-18px;color:var(--muted)}
-@media(max-width:1000px){.xp-card{grid-column:span 12}}
+/* Skip link */
+.skip{position:absolute;left:-9999px;top:auto}
+.skip:focus{left:16px;top:12px;z-index:999;background:#fff;color:#000;padding:8px 10px;border-radius:8px}
 
-/* EDUCATION */
-.edu-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
-.edu-list li{background:color-mix(in oklab,var(--panel) 92%,transparent);border:1px solid var(--edge);border-radius:12px;padding:12px 14px}
+/* Header */
+.siteHeader{position:sticky;top:0;z-index:50;background:rgba(10,12,16,.6);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid var(--line)}
+.headerInner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:700;letter-spacing:.2px}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{opacity:.9;text-decoration:none;border-radius:10px;padding:8px 10px}
+.nav a:hover,.nav a:focus-visible{background:var(--line)}
 
-/* MODAL (case studies) */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:100}
-.modal__content{position:relative;width:min(960px,96vw);background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:18px}
-.modal__close{position:absolute;top:12px;right:12px;width:36px;height:36px;line-height:34px;border-radius:999px;background:transparent;color:var(--ink);border:1px solid var(--edge);cursor:pointer}
-.meta-lg{font-size:15px;margin-bottom:4px}
-.cs-title{margin:6px 0 8px}
-.cs-two{display:grid;grid-template-columns:260px 1fr;gap:18px}
-@media(max-width:760px){.cs-two{grid-template-columns:1fr}}
+/* CTA */
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;border:none;padding:12px 18px;border-radius:12px;font-weight:600}
+.cta--ghost{background:transparent;border:1px solid var(--line)}
+.cta:hover,.cta:focus-visible{transform:translateY(-1px);box-shadow:0 6px 18px rgba(107,107,249,.35)}
 
-/* --- brand logo fixes & flags --- */
-.meta-logo{ filter:none !important; background:transparent; }
-
-/* StackBOX: black logo on dark bg -> put on a white chip */
-.meta-logo[src*="stackbox"]{
-  background:#fff; padding:4px 6px; border-radius:6px;
-  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
-}
-
-/* DTDC: increase visibility */
-.meta-logo[src*="dtdc"]{ height:22px; width:auto; }
-
-/* Keep Edgistify color as-is (no invert) -> already handled by filter:none above */
-
-/* Flags on Work cards (based on the logo next to brand text) */
-.meta .meta-brand{ position:relative; }
-.meta .meta-logo[src*="itc"]  + .meta-brand::after{ content:"  🇮🇳"; }
-.meta .meta-logo[src*="pg"]   + .meta-brand::after{ content:"  🇵🇭"; }
-.meta .meta-logo[src*="dtdc"] + .meta-brand::after{ content:"  🇮🇳"; }
-
-/* Flags on Experience cards (logo sits before the company name) */
-.xp-card .xp-head img[src*="stackbox"] + *::after{ content:"  🇮🇳"; }
-.xp-card .xp-head img[src*="edgistify"]+ *::after{ content:"  🇮🇳"; }
-.xp-card .xp-head img[src*="mindseed"] + *::after{ content:"  🇮🇳"; }
-.xp-card .xp-head img[src*="dtdc"]     + *::after{ content:"  🇮🇳"; }
-
-
-/* ----- text logo chip fallback ----- */
-.logo-chip{
-  display:inline-flex; align-items:center; justify-content:center;
-  height:20px; min-width:34px; padding:0 8px; border-radius:6px;
-  font: 600 11px/1 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  letter-spacing:.2px;
-  color:#0a0a0a; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.08) inset;
-}
-
-/* keep earlier brand rules */
-.meta-logo{ filter:none!important; background:transparent; }
-.meta-logo[src*="stackbox"]{
-  background:#fff; padding:4px 6px; border-radius:6px;
-  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
-}
-.meta-logo[src*="dtdc"]{ height:22px; width:auto; }
-
-
-/* ---- make brand marks larger & clear ---- */
-.meta-logo{ height:24px; width:auto; filter:none!important; background:transparent; }
-.meta-logo[src*="stackbox"]{
-  background:#fff; padding:4px 8px; border-radius:8px;
-  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
-}
-.meta-logo[src*="dtdc"]{ height:26px; }
-.logo-chip{ display:inline-flex; align-items:center; justify-content:center; height:22px; min-width:38px; padding:0 10px; font:600 12px/1 Inter,system-ui; background:#fff; color:#0a0a0a; border-radius:8px; box-shadow:0 0 0 1px rgba(0,0,0,.08) inset; }
-
-/* ---- case study modal ---- */
-.modal{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
-.modal__content{ position:relative; width:min(960px,95vw); max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--edge); border-radius:16px; padding:20px; }
-.modal__close{ position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:999px; border:1px solid var(--edge); background:transparent; color:var(--ink); cursor:pointer; }
-.modal__close:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-
-/* ---- no color swatches (if any stale markup exists) ---- */
-.swatches{ display:none!important; }
-
-/* ===== Case-study modal typography (overrides) ===== */
-.modal__content { --cs-max: 68ch; }
-.modal__content h3{
-  font-size:28px; line-height:1.2; letter-spacing:-.01em; margin:0 0 10px;
-}
-.modal__content .meta{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  font-size:14px; opacity:.95; margin:0 0 12px;
-}
-.modal__content .meta .meta-brand{ font-weight:600; }
-.modal__content .meta .meta-dot{ opacity:.5; }
-.modal__content .meta .meta-period{ opacity:.9; }
-
-.modal__content p,
-.modal__content li{
-  font-size:16px; line-height:1.6;
-  max-width:var(--cs-max);
-}
-.modal__content p{ margin:10px 0 14px; }
-
-.modal__content h4{
-  margin:18px 0 8px; font-size:15px; letter-spacing:.02em;
-  text-transform:uppercase; opacity:.85;
-}
-
-/* Make lists read like a checklist in the modal */
-.modal__content .dashlist{
-  list-style:none; padding:0; margin:8px 0 18px;
-}
-.modal__content .dashlist li{
-  position:relative; padding-left:26px; margin:8px 0;
-}
-.modal__content .dashlist li::before{
-  content:'✓';
-  position:absolute; left:0; top:0; line-height:1.2;
-  font-weight:700; color:var(--accent);
-}
-
-/* Tighten tools line and de-emphasize */
-.modal__content p.muted{ opacity:.85 }
-/* modal: no bullets for action/outcome lists */
-.modal__content .dashlist{ list-style:none; padding:0; margin:8px 0 18px; }
-.modal__content .dashlist li{ position:static; padding-left:0; margin:10px 0; }
-.modal__content .dashlist li::before{ content:none !important; }
-
-/* clickable cards */
-.card--clickable{ cursor:pointer; transition:transform .25s ease, box-shadow .25s ease; }
-.card--clickable:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.28); }
-.card--clickable:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; }
-
-/* media polish on hover */
-.card .card-media{ position:relative; overflow:hidden; border-radius:12px; }
-.card--clickable .card-media img{ transition:transform .3s ease; }
-.card--clickable:hover .card-media img{ transform:scale(1.02); }
-
-/* ghost button = clearly interactive */
-.card .btn.btn--ghost{
-  border:1px solid var(--edge);
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
-}
-.card .btn.btn--ghost:hover{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent);
-}
-
-/* remove duplicate brand text if any remained */
-.meta-brand{ display:none !important; }
-
-/* keep meta tidy: logo + flag + period */
-.meta{ display:flex; align-items:center; gap:8px; }
-.meta-dot{ opacity:.45 }
-/* ---- Experience / Work listlines: no bullets, cleaner rhythm ---- */
-.card .dashlist{ list-style:none; padding:0; margin:10px 0 14px; }
-.card .dashlist li{ margin:10px 0; padding:0; }
-
-/* meta line reads: Logo · Flag · Period · Tenure */
-.xp-meta,.meta{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-.meta-dot{ opacity:.5 } /* already used */
-.meta-period,.meta-tenure{ opacity:.9 }
-
-/* small breathing room between title and meta */
-.card h3 + .xp-meta,
-.card h3 + .meta{ margin-top:6px; }
-
-/* keep readability on dense points */
-.card p, .card li{ line-height:1.6 }
-/* Readability in cards */
-.card h3{ font-size:22px; line-height:1.25; letter-spacing:-.01em; }
-.card p, .card li{ font-size:16.5px; line-height:1.65; }
-
-/* Button: turn ghost into accent pill */
-.card .btn.btn--ghost{
-  font-size:15.5px;
-  padding:10px 14px;
-  color:#fff;
-  background:linear-gradient(180deg,
-    color-mix(in oklab, var(--accent) 92%, #000 0%),
-    color-mix(in oklab, var(--accent) 74%, #000 0%));
-  border:0;
-  border-radius:12px;
-  box-shadow:0 6px 18px color-mix(in oklab, var(--accent) 25%, transparent);
-  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-}
-.card .btn.btn--ghost:hover{ filter:brightness(1.05); transform:translateY(-1px); }
-.card .btn.btn--ghost:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-
-/* Ensure no pseudo-bullets sneak back */
-.card .dashlist{ list-style:none; padding:0; margin:10px 0 14px; }
-.card .dashlist li::before{ content:none !important; }
-/* --- Smooth, uniform top spacing & hero flow --- */
-:root{
-  --safe-top: env(safe-area-inset-top, 0px);
-  --space-1: clamp(12px, 1.6vw, 20px);
-  --space-2: clamp(16px, 2.4vw, 28px);
-  --hero-pt: clamp(72px, 9vw, 140px);
-  --hero-pr: clamp(20px, 4vw, 48px);
-  --hero-pb: clamp(36px, 6vw, 72px);
-}
-
-/* breathing room above nav and between nav → hero */
-.nav{ margin-top: calc(var(--safe-top) + var(--space-1)); }
-.nav + .hero{ margin-top: var(--space-2); }
-
-/* hero gets generous top padding + rounded corners */
+/* Hero */
 .hero{
-  position: relative;
-  padding: var(--hero-pt) var(--hero-pr) var(--hero-pb);
-  border-radius: 28px;
-}
-
-/* subtle fade at the top so it blends instead of a hard edge */
-.hero::after{
-  content:"";
-  position:absolute;
-  left:-24px; right:-24px; top:-24px; height:48px;
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
-  pointer-events:none;
-  border-radius: 32px;
-  opacity:.55;
-  filter: blur(1px);
-}
-
-/* mobile tweak */
-@media (max-width: 640px){
-  .hero{ border-radius: 20px; }
-}
-
-/* --- hero spacing & smooth flow (if not already added) --- */
-:root{
-  --safe-top: env(safe-area-inset-top, 0px);
-  --space-1: clamp(12px, 1.6vw, 20px);
-  --space-2: clamp(16px, 2.4vw, 28px);
-  --hero-pt: clamp(72px, 9vw, 140px);
-  --hero-pr: clamp(20px, 4vw, 48px);
-  --hero-pb: clamp(36px, 6vw, 72px);
-}
-.nav{ margin-top: calc(var(--safe-top) + var(--space-1)); }
-.nav + .hero{ margin-top: var(--space-2); }
-.hero{ position:relative; padding:var(--hero-pt) var(--hero-pr) var(--hero-pb); border-radius:28px; }
-.hero::after{ content:""; position:absolute; left:-24px; right:-24px; top:-24px; height:48px;
-  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)); pointer-events:none; border-radius:32px; opacity:.55; filter:blur(1px); }
-
-/* Quick facts row */
-.facts{ margin-top:18px; display:flex; flex-wrap:wrap; gap:10px 16px; color:var(--muted,#9aa0a6); font-size:14.5px }
-.facts span{ white-space:nowrap; }
-.facts span::after{ content:"•"; margin:0 8px; opacity:.5 }
-.facts span:last-child::after{ content:"" }
-
-/* Work grid + cards */
-.work-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
-.card{ background:var(--panel,#14161a); border:1px solid var(--edge,#24262b); border-radius:18px; padding:14px; }
-.card__media img{ width:100%; height:200px; object-fit:cover; border-radius:12px; }
-.card__meta{ display:flex; align-items:center; gap:10px; margin:10px 0 6px; color:#aeb4bc; font-size:13.5px }
-.card h3{ font-size:22px; line-height:1.25; margin:6px 0 6px; letter-spacing:-.01em }
-.card p{ font-size:16.5px; line-height:1.65; }
-.card__actions{ margin-top:10px }
-
-/* Accent CTA for case button */
-.card .btn.btn--ghost{
-  font-size:15.5px; padding:10px 14px; color:#fff;
-  background:linear-gradient(180deg, color-mix(in oklab, var(--accent,#6d6df6) 92%, #000 0%),
-                                      color-mix(in oklab, var(--accent,#6d6df6) 74%, #000 0%));
-  border:0; border-radius:12px;
-  box-shadow:0 6px 18px color-mix(in oklab, var(--accent,#6d6df6) 25%, transparent);
-  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-}
-.card .btn.btn--ghost:hover{ filter:brightness(1.05); transform:translateY(-1px); }
-.card .btn.btn--ghost:focus-visible{ outline:2px solid var(--accent,#6d6df6); outline-offset:2px; }
-
-/* Logos: consistent size + optional white pill */
-.logo-badge{ height:18px; width:auto; display:inline-block; border-radius:4px; background:transparent; padding:2px 4px }
-.logo-badge--onwhite{ background:#fff; padding:4px 6px; border:1px solid rgba(0,0,0,.06) }
-
-/* Experience grid */
-.xp-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px }
-.dashlist{ list-style:none; margin:10px 0 0; padding:0 }
-.dashlist li::before{ content:none }
-
-/* Case pages */
-.case{ max-width:1100px; margin:0 auto; padding:40px 20px 80px }
-.case__head .crumb{ margin:0 0 10px; }
-.case__head h1{ font-size:40px; line-height:1.15; margin:.2em 0; letter-spacing:-.02em }
-.case__head .meta{ display:flex; align-items:center; gap:12px; color:#aeb4bc }
-.case__cover img{ width:100%; height:auto; border-radius:16px; margin:18px 0 8px }
-.case__grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:8px }
-.case__grid h3{ font-size:18px; margin:0 0 6px }
-
-@media (max-width: 960px){
-  .work-grid{ grid-template-columns:1fr; }
-  .xp-grid{ grid-template-columns:1fr; }
-  .case__grid{ grid-template-columns:1fr; }
-  .card__media img{ height:180px; }
-  .hero{ border-radius:20px; }
-}
-
-/* ==== Locked accent + gradient hero + clearer CTAs (appended) ==== */
-:root{
-  --bg: #0b0d12;
-  --text: #e9edf3;
-  --muted: #a7b0be;
-
-  /* single accent */
-  --accent: #7c5cff;
-  --accent-2: #a06bff;
-
-  /* hero/background */
-  --hero-start: #0b0d12;
-  --hero-mid:   #151829;
-  --hero-end:   #1c1233;
-
-  /* surfaces */
-  --card: #11141c;
-  --card-2:#0e1119;
-
-  /* outlines/shadows */
-  --ring: 0 0 0 1px color-mix(in oklab, white 8%, transparent);
-  --shadow: 0 8px 30px rgba(0,0,0,.35);
-}
-
-/* Keep dark look in both schemes for consistency */
-@media (prefers-color-scheme: light){
-  :root{
-    --text: #ffffff;
-    --muted:#d6dbea;
-    --card:#0f1220;
-    --card-2:#101426;
-  }
-}
-
-body{ background: var(--bg); color: var(--text); }
-
-/* HERO — soft Apple-ish gradient */
-.hero{
+  position:relative;
   background:
-    radial-gradient(1200px 600px at 60% -200px, color-mix(in oklab, var(--accent) 20%, transparent), transparent 60%),
-    radial-gradient(1000px 500px at 20% -150px, color-mix(in oklab, var(--accent-2) 18%, transparent), transparent 60%),
-    linear-gradient(180deg, var(--hero-start), var(--hero-mid) 50%, var(--hero-end));
-  border-radius: 24px;
-  box-shadow: var(--shadow);
+    radial-gradient(1200px 600px at 15% 5%, rgba(107,107,249,.25), transparent 60%),
+    linear-gradient(180deg, #0c0e14, #0a0c11 60%, #0b0d10);
+  border-bottom:1px solid var(--line);
 }
-
-/* Primary button = fixed accent gradient */
-.btn--primary{
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color:#fff;
+.heroInner{padding:72px 24px 56px}
+.avatar{
+  width:96px;height:96px;object-fit:cover;border-radius:999px;
+  border:3px solid rgba(255,255,255,.1);box-shadow:var(--shadow);margin-bottom:24px
 }
-.btn--primary:hover{ filter: brightness(1.06); }
+.headline{
+  font-weight:800;letter-spacing:.2px;margin:0 0 12px;
+  font-size:clamp(36px, 5vw, 72px); line-height:1.05;
+}
+.lede{color:var(--muted);max-width:900px;margin:0 0 18px}
+.ctaRow{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0;padding:0;list-style:none;color:var(--muted)}
+.chips li{padding:6px 10px;border:1px solid var(--line);border-radius:999px}
 
-/* Cards pick up subtle gradient surface */
+/* Sections */
+.section{padding:56px 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(22px,3vw,32px);margin:0 0 6px}
+.sublede{margin:0 0 22px}
+
+/* Cards (Work) */
+.cards{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
 .card{
-  background: linear-gradient(180deg, var(--card), var(--card-2));
-  border: var(--ring);
-  box-shadow: var(--shadow);
+  grid-column:span 12;
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 18px 18px;position:relative;overflow:hidden;
 }
+@media(min-width:800px){ .card{grid-column:span 6} }
+@media(min-width:1100px){ .card{grid-column:span 4} }
 
-/* Make case-study CTA obviously interactive without touching other ghost buttons */
-.card .btn--ghost{
-  background: transparent;
-  border: 1px solid color-mix(in oklab, var(--accent) 55%, white 0%);
-  color: var(--text);
-  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+.cardHeader{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.logo{width:28px;height:28px;object-fit:contain;background:#fff;border-radius:6px;padding:3px;border:1px solid var(--line)}
+.logo.pill{background:#fff;border-radius:999px;padding:6px;width:64px;height:28px}
+.meta{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px}
+.flag{margin-left:2px}
+.cardTitle{font-size:18px;margin:8px 0 4px}
+.cardSummary{color:var(--muted);margin:0 0 14px}
+.cardActions{display:flex;gap:10px;margin-bottom:14px}
+.cover{
+  width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--line)
 }
-.card .btn--ghost:hover,
-.card .btn--ghost:focus-visible{
-  background: color-mix(in oklab, var(--accent) 18%, transparent);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 
-/* Section heading underline using accent */
-.section h2{ position: relative; }
-.section h2::after{
-  content:"";
-  position:absolute; left:0; bottom:-10px; height:2px; width:56px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  border-radius: 2px;
-}
-/* === HERO: small avatar, big headline, smooth gradient background === */
-.hero{
-  position: relative;
-  isolation: isolate;
-  padding: 120px 0 72px;
-}
-.hero::before{
-  /* soft Apple-ish glow behind the hero */
-  content:"";
-  position:absolute; inset:-6% -12% auto;
-  height:520px; z-index:-1; border-radius:32px;
-  background:
-    radial-gradient(1200px 420px at 20% 5%,
-      color-mix(in oklab, var(--accent) 36%, transparent) 0%,
-      transparent 60%),
-    radial-gradient(900px 480px at 85% -10%,
-      color-mix(in oklab, var(--accent) 24%, transparent) 0%,
-      transparent 65%),
-    linear-gradient(180deg, rgba(255,255,255,.02), transparent 40%);
-  opacity:.9;
-}
-.hero .avatar{
-  width:140px; height:140px; border-radius:50%;
-  object-fit:cover;
-  box-shadow:0 8px 40px rgba(0,0,0,.35);
-}
-.hero h1{
-  font-size:clamp(40px, 6.2vw, 84px);
-  line-height:1.05; letter-spacing:-.02em;
-  max-width:18ch;
-}
-.hero .tagline{
-  font-size:clamp(16px, 1.5vw, 20px);
-  max-width:70ch; color:var(--text-2);
-}
-/* make top feel more even under the floating nav */
-.nav + .hero{ margin-top: 10px; }
+/* Experience */
+.expGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.exp{grid-column:span 12;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+@media(min-width:900px){ .exp{grid-column:span 6} }
+.expTop{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:8px}
+.expBrand{display:flex;align-items:center;gap:10px}
+.expTime{color:var(--muted);font-size:14px}
+.role{color:var(--muted);margin:6px 0 8px}
+.expList{margin:0;padding-left:20px}
+.expList li{margin:8px 0}
 
-@media (max-width: 720px){
-  .hero{ padding:88px 0 56px; }
-  .hero .avatar{ width:88px; height:88px; }
-  .hero h1{ font-size:clamp(32px, 9vw, 46px); }
+/* Badges (education) */
+.badgeLine{display:flex;flex-wrap:wrap;gap:10px}
+.badge{border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.02)}
+
+/* Footer */
+.siteFooter{border-top:1px solid var(--line);padding:24px 0;color:var(--muted)}
+
+/* Modal */
+.modal{border:none;padding:0;background:transparent}
+.modal::backdrop{background:rgba(0,0,0,.6)}
+.modalBox{
+  width:min(920px, calc(100% - 32px));
+  margin:6dvh auto;background:var(--bg-elev);border:1px solid var(--line);
+  border-radius:18px;box-shadow:var(--shadow);padding:18px 18px 22px
 }
+.modalClose{
+  position:absolute;right:22px;top:10px;background:transparent;border:1px solid var(--line);
+  color:var(--text);width:34px;height:34px;border-radius:10px;font-size:22px;line-height:1
+}
+.modalHead{display:flex;align-items:center;gap:12px;margin:6px 0 8px}
+.modalHead .logo{width:24px;height:24px}
+.modalBody .lede{margin-bottom:14px}
+.modalCols{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:860px){ .modalCols{grid-template-columns:1fr 380px} }
+.modalList{margin:0;padding-left:18px}
+.modalCover{width:100%;height:260px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
