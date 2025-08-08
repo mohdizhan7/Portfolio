@@ -22,7 +22,7 @@ const CASES: Case[] = [
     title: 'WMS/TMS Site Setup & Operational Ramp',
     year: '2023–24',
     flags: ['🇮🇳'],
-    logo: '/logos/ITC_Limited_Logo.svg',
+    logo: logos.itc,
     cover: covers.itc,
     summary:
       'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.',
@@ -39,7 +39,7 @@ const CASES: Case[] = [
     title: 'Rendering Optimisation (Philippines)',
     year: '2023–24',
     flags: ['🇵🇭'],
-    logo: '/logos/Procter_&_Gamble_logo.svg.png',
+    logo: logos.pg,
     cover: covers.pg,
     summary:
       'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.',
@@ -55,7 +55,7 @@ const CASES: Case[] = [
     title: 'COVID Backlog Clearance',
     year: '2020',
     flags: ['🇮🇳'],
-    logo: '/logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif',
+    logo: logos.dtdc,
     cover: covers.dtdc,
     summary:
       'Partner network + routing & shift orchestration to clear backlog quickly.',
