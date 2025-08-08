@@ -15,13 +15,11 @@ const fadeUp = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
-/* Magnetic link (typed for motion.a so MotionValues in style are allowed) */
 type MagnetProps = Omit<HTMLMotionProps<'a'>, 'ref'>;
 function Magnet(props: MagnetProps) {
   const x = useMotionValue(0), y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 300, damping: 20 });
   const sy = useSpring(y, { stiffness: 300, damping: 20 });
-
   return (
     <motion.a
       {...props}
@@ -67,16 +65,13 @@ const projects = [
 ] as const;
 
 export default function App() {
-  /* Theme (light/dark) with persistence + system default */
   type Theme = 'light' | 'dark';
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = (typeof localStorage !== 'undefined'
       ? (localStorage.getItem('theme') as Theme | null)
       : null);
     if (saved) return saved;
-    if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
+    if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches) return 'dark';
     return 'light';
   });
   useEffect(() => {
@@ -84,28 +79,21 @@ export default function App() {
     try { localStorage.setItem('theme', theme); } catch {}
   }, [theme]);
 
-  /* Accent color (read by CSS via :root[data-accent]) */
   const [accent, setAccent] = useState<'indigo' | 'green' | 'pink'>('indigo');
-  useEffect(() => {
-    document.documentElement.setAttribute('data-accent', accent);
-  }, [accent]);
+  useEffect(() => { document.documentElement.setAttribute('data-accent', accent); }, [accent]);
 
-  /* Respect OS "Reduce Motion" */
   const reduceMotion = useReducedMotion();
 
-  /* Top progress bar */
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(Math.max(0, Math.min(100, (window.scrollY / max) * 100)));
     };
-    onScroll();
-    window.addEventListener('scroll', onScroll);
+    onScroll(); window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Section observer for right-side dots */
   const sections = ['about', 'experience', 'work', 'skills', 'contact'] as const;
   const [active, setActive] = useState<(typeof sections)[number]>(sections[0]);
   useEffect(() => {
@@ -117,7 +105,6 @@ export default function App() {
     return () => io.disconnect();
   }, []);
 
-  /* Hero parallax */
   const heroRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start end', 'end start'] });
   const imgY  = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-8, 16]);
@@ -127,10 +114,8 @@ export default function App() {
 
   return (
     <main>
-      {/* scroll progress */}
       <div className="progress" style={{ width: `${progress}%` }} />
 
-      {/* frosted sticky nav */}
       <div className="nav" role="navigation" aria-label="Site navigation">
         <div className="nav-inner">
           <strong>Mohd Izhan Shaikh</strong>
@@ -141,32 +126,10 @@ export default function App() {
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
 
-            {/* accent + theme controls (keyboard & screen reader friendly) */}
             <div className="swatches" aria-label="Accent colors" role="group">
-              <button
-                type="button"
-                className="swatch indigo"
-                onClick={() => setAccent('indigo')}
-                title="Indigo"
-                aria-label="Use indigo accent"
-                aria-pressed={accent === 'indigo'}
-              />
-              <button
-                type="button"
-                className="swatch green"
-                onClick={() => setAccent('green')}
-                title="Green"
-                aria-label="Use green accent"
-                aria-pressed={accent === 'green'}
-              />
-              <button
-                type="button"
-                className="swatch pink"
-                onClick={() => setAccent('pink')}
-                title="Pink"
-                aria-label="Use pink accent"
-                aria-pressed={accent === 'pink'}
-              />
+              <button type="button" className="swatch indigo" onClick={() => setAccent('indigo')} title="Indigo" aria-label="Use indigo accent" aria-pressed={accent==='indigo'} />
+              <button type="button" className="swatch green"  onClick={() => setAccent('green')}  title="Green"  aria-label="Use green accent"  aria-pressed={accent==='green'} />
+              <button type="button" className="swatch pink"   onClick={() => setAccent('pink')}   title="Pink"   aria-label="Use pink accent"   aria-pressed={accent==='pink'} />
             </div>
             <button
               type="button"
@@ -182,16 +145,20 @@ export default function App() {
         </div>
       </div>
 
-      {/* hero */}
       <section className="hero" ref={heroRef}>
         <picture>
-          <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
+          <source
+            srcSet={`${import.meta.env.BASE_URL}izhan.webp`}
+            type="image/webp"
+            sizes="(max-width: 700px) 56px, 80px"
+          />
           <motion.img
             src={`${import.meta.env.BASE_URL}izhan.jpg`}
             alt="Portrait of Mohd Izhan Shaikh"
             className="avatar"
             width={80}
             height={80}
+            sizes="(max-width: 700px) 56px, 80px"
             decoding="async"
             loading="eager"
             fetchPriority="high"
@@ -222,7 +189,6 @@ export default function App() {
 
       <hr />
 
-      {/* about */}
       <section id="about" className="section" aria-labelledby="about-heading">
         <motion.h2 id="about-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           About
@@ -235,7 +201,6 @@ export default function App() {
 
       <hr />
 
-      {/* experience */}
       <section id="experience" className="section" aria-labelledby="exp-heading">
         <motion.h2 id="exp-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           Experience
@@ -272,7 +237,6 @@ export default function App() {
 
       <hr />
 
-      {/* work */}
       <section id="work" className="section" aria-labelledby="work-heading">
         <motion.h2 id="work-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           Work
@@ -305,7 +269,6 @@ export default function App() {
 
       <hr />
 
-      {/* skills */}
       <section id="skills" className="section" aria-labelledby="skills-heading">
         <motion.h2 id="skills-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           Skills &amp; Certifications
@@ -319,7 +282,6 @@ export default function App() {
 
       <hr />
 
-      {/* contact */}
       <section id="contact" className="section" aria-labelledby="contact-heading">
         <motion.h2 id="contact-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           Contact
@@ -331,7 +293,6 @@ export default function App() {
         </motion.p>
       </section>
 
-      {/* right-side section dots (announce + aria-current) */}
       <nav className="dots" aria-label="Section navigation">
         {sections.map((id) => (
           <a

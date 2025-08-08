@@ -150,3 +150,34 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 .nav a:hover{
   background: color-mix(in oklab, var(--ink) 12%, transparent);
 }
+/* === Mobile optimizations =============================================== */
+:root{ --space-1:10px; --space-2:16px; --space-3:22px; }
+.btn{ min-height:44px; line-height:1; }
+
+@media (max-width:700px){
+  body{ line-height:1.55; }
+  h1{ font-size:clamp(26px,7vw,36px); letter-spacing:-.01em; }
+  .title,.tagline{ font-size:14px; }
+  main{ padding:var(--space-2); }
+  hr{ margin:var(--space-2) 0; }
+  .nav{ top:8px; padding:8px 10px; }
+  .nav-inner{ gap:8px; }
+  .nav a{ padding:8px 10px; }
+  .swatches{ gap:6px; }
+  .theme-toggle{ padding:8px 10px; }
+  .hero{ grid-template-columns:56px 1fr; gap:14px; padding:36px 6px 18px; }
+  .avatar{ width:56px; height:56px; }
+  .cta{ flex-direction:column; align-items:stretch; gap:10px; margin-top:14px; }
+  .btn{ width:100%; }
+  .section{ padding:18px 6px; }
+  .section h2{ font-size:18px; margin-bottom:8px; }
+  ul{ margin-left:16px; }
+  .grid{ grid-template-columns:1fr; gap:12px; }
+  .card{ padding:12px; }
+}
+@media (max-width:420px){ .dots{ display:none; } }
+@media (max-width:700px){
+  :root[data-theme="dark"] .nav a:hover{
+    background: color-mix(in oklab, var(--ink) 10%, transparent);
+  }
+}
