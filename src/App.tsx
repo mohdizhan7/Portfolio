@@ -9,22 +9,19 @@ function Magnet(props: MagnetProps){
   const sy = useSpring(y,{stiffness:300,damping:20});
   return (
     <motion.a {...props} style={{x:sx,y:sy}}
-      onMouseMove={(e)=>{ const r=e.currentTarget.getBoundingClientRect(); x.set((e.clientX-(r.left+r.width/2))*0.12); y.set((e.clientY-(r.top+r.height/2))*0.12); }}
+      onMouseMove={(e)=>{const r=e.currentTarget.getBoundingClientRect();x.set((e.clientX-(r.left+r.width/2))*0.12);y.set((e.clientY-(r.top+r.height/2))*0.12);}}
       onMouseLeave={()=>{x.set(0);y.set(0);}}
     />
   );
 }
 
-const TOTAL_EXPERIENCE = '6+ years';
-
 const companies = {
-  stackbox:  { name:'StackBOX',  logo:'logos/stackbox.png' },
-  edgistify: { name:'Edgistify', logo:'logos/edgistify.png' },
-  dtdc:      { name:'DTDC',      logo:'logos/dtdc.avif' },        // AVIF logo you have
-  itc:       { name:'ITC',       logo:'logos/placeholder.svg' },  // add later when you have it
-  hul:       { name:'HUL',       logo:'logos/placeholder.svg' },
-  pg:        { name:'P&G',       logo:'logos/placeholder.svg' },
-  mindseed:  { name:'Mindseed Education', logo:'logos/placeholder.svg' },
+  stackbox:  { name:'StackBOX',  logo:'logos/stackbox.png', flag:'🇮🇳' },
+  edgistify: { name:'Edgistify', logo:'logos/edgistify.png', flag:'🇮🇳' },
+  dtdc:      { name:'DTDC',      logo:'logos/dtdc.avif',    flag:'🇮🇳' },
+  itc:       { name:'ITC',       logo:'logos/placeholder.svg', flag:'🇮🇳' },   // no real file yet
+  pg:        { name:'P&G',       logo:'logos/placeholder.svg', flag:'🇵🇭' },   // Philippines
+  mindseed:  { name:'Mindseed Education', logo:'logos/placeholder.svg', flag:'🇮🇳' },
 } as const;
 
 type Project = {
@@ -38,107 +35,55 @@ const projects: Project[] = [
     id:'itc', brand:'itc', period:'2023–24',
     title:'WMS/TMS Site Setup & Operational Ramp',
     summary:'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.',
-    cover:'logos/dtdc.jpg',   // your Pinterest (2)
-    caseStudy:{
-      context:'ITC required rapid stand-up of two warehouses with clear KPIs and governance.',
-      role:'Assistant Project Manager (StackBOX), cross-functional with product/ops.',
-      actions:[
-        'Wrote BRDs; translated to SOPs/KPIs and task configurations.',
-        'Coordinated UAT, cutover, training and hyper-care.',
-        'Set up cost tracking and cadence reviews.'
-      ],
-      outcomes:[
-        'Stable handoffs across teams; smoother daily governance.',
-        'SOP/KPI adoption and faster onboarding of floor teams.'
-      ],
-      tools:['WMS/TMS','SOP/KPI playbooks','Dashboards']
-    }
+    cover:'logos/dtdc.jpg',   // (swapped) warehouse conveyor image
+    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
   },
   {
     id:'pg', brand:'pg', period:'2023–24',
     title:'Rendering Optimisation (Philippines)',
     summary:'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.',
-    cover:'logos/itc.jpg',    // your Pinterest (1)
-    caseStudy:{
-      context:'Rendering exceptions and throughput variability created delays.',
-      role:'Account Lead / PM for the PH program.',
-      actions:[
-        'Mapped AS-IS vs TO-BE; adjusted rendering rules and SLAs.',
-        'Built exception dashboards; trained floor supervisors.',
-        'Drove rollout across lanes with change-management.'
-      ],
-      outcomes:[
-        'Throughput uplift with fewer escalations.',
-        'Sustained KPI improvement post-rollout.'
-      ],
-      tools:['Process maps','Exception dashboards','Training kits']
-    }
+    cover:'logos/itc.jpg',    // (swapped) bins image
+    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
   },
   {
     id:'dtdc', brand:'dtdc', period:'2020',
     title:'COVID Backlog Clearance',
     summary:'Partner network + routing & shift orchestration to clear backlog quickly.',
-    cover:'logos/pg.jpg',  // your Pinterest base image
-    caseStudy:{
-      context:'Branch faced a COVID-era delivery backlog.',
-      role:'Branch/Ops Manager leading a 25-member team.',
-      actions:[
-        'Set up partner coverage (incl. newspaper distributors).',
-        'Planned routing, shifts and daily targets; triaged issues.',
-        'Implemented on-floor dashboards and RCA loops.'
-      ],
-      outcomes:[
-        'Backlog cleared within a week.',
-        'Service levels and on-time rate restored.'
-      ],
-      tools:['Routing plans','Daily control tower','RCA + 5S']
-    }
+    cover:'logos/pg.jpg',     // (swapped) people on conveyor image
+    caseStudy:{ context:'—', role:'—', actions:[], outcomes:[] }
   }
 ];
 
-type ExperienceItem = { company:keyof typeof companies; name:string; title:string; period:string; points:string[] };
-const experience: ExperienceItem[] = [
-  { company:'stackbox', name:'StackBOX', title:'Assistant Project Manager — Supply Chain & Delivery', period:'Sep 2023 – Present',
-    points:[
+const xp = [
+  { company:'stackbox', title:'Assistant Project Manager — Supply Chain & Delivery', period:'Sep 2023 – Present',
+    bullets:[
       'End-to-end launches: BRDs, SOP/KPI design, UAT, go-live, governance.',
       'Account lead for P&G PH rendering optimisation (rules, dashboards, training).',
       'Cost tracking and inter-team coordination for on-time deployments.'
-    ]},
-  { company:'edgistify', name:'Edgistify', title:'Manager, Solution Design', period:'Aug 2022 – Sep 2023',
-    points:[
-      'Designed supply-chain solutions to improve KPIs and reduce costs.',
-      'Drove vendor alignment and stakeholder buy-in for rollouts.'
-    ]},
-  { company:'mindseed', name:'Mindseed Education', title:'Manager, Procurement & Supply Chain', period:'Dec 2021 – Aug 2022',
-    points:[
-      'Owned procurement strategy, benchmarking & cost analysis.',
-      'End-to-end operational oversight and supplier performance.'
-    ]},
-  { company:'dtdc', name:'DTDC Express', title:'Branch / Ops Manager', period:'Jan 2020 – Dec 2021',
-    points:[
-      'Cleared COVID backlog via routing & shift orchestration.',
-      'Dashboards, training and RCA to improve service levels.'
-    ]},
-];
+    ] },
+  { company:'edgistify', title:'Manager, Solution Design', period:'Aug 2022 – Sep 2023',
+    bullets:['Designed supply-chain solutions to improve KPIs and reduce costs.','Drove vendor alignment and stakeholder buy-in for rollouts.'] },
+  { company:'mindseed', title:'Manager, Procurement & Supply Chain', period:'Dec 2021 – Aug 2022',
+    bullets:['Owned procurement strategy, benchmarking & cost analysis.','End-to-end operational oversight and supplier performance.'] },
+  { company:'dtdc', title:'Branch / Ops Manager', period:'Jan 2020 – Dec 2021',
+    bullets:['Cleared COVID backlog via routing & shift orchestration.','Dashboards, training and RCA to improve service levels.'] },
+] as const;
 
-const education = [
-  { school:'Mumbai University — B.E. Mechanical Engineering', line:'2015–2019' },
-  { school:'Atomic Energy Junior College — HSC (Computer Science)', line:'2013–2015' },
-  { school:'Atomic Energy Central School — SSC', line:'2012–2013' },
-  { school:'Certifications', line:'Lean Six Sigma Foundations · SAP S/4HANA Essentials · Project Mgmt Foundations · Root Cause Analysis · Supply Chain Foundations' }
-];
+function BrandMark({brand}:{brand:keyof typeof companies}){
+  const c = companies[brand];
+  const isPlaceholder = c.logo.endsWith('placeholder.svg');
+  if (isPlaceholder) {
+    return <span className="logo-chip" aria-label={`${c.name} logo (text)`}>{c.name.replace(' &','&')}</span>;
+  }
+  return <img className="meta-logo" src={`${import.meta.env.BASE_URL}${c.logo}`} alt={`${c.name} logo`}
+              onError={(e)=>{ (e.currentTarget as HTMLImageElement).replaceWith(
+                Object.assign(document.createElement('span'),{className:'logo-chip',textContent:c.name})
+              ); }} />;
+}
 
 export default function App(){
   const [accent,setAccent] = useState<'indigo'|'green'|'pink'>('indigo');
   useEffect(()=>{ document.documentElement.setAttribute('data-accent',accent); },[accent]);
-  const [activeProject,setActiveProject] = useState<Project|null>(null);
-
-  const LogoImg = ({src,alt}:{src:string,alt:string}) =>
-    <img className="meta-logo"
-         src={`${import.meta.env.BASE_URL}${src}`}
-         alt={alt}
-         onError={(e)=>{ (e.currentTarget as HTMLImageElement).src = `${import.meta.env.BASE_URL}logos/placeholder.svg`; }}
-    />;
 
   return (
     <main>
@@ -180,83 +125,59 @@ export default function App(){
           <p className="muted">From FMCG, logistics & education—each with context, role, actions, outcomes.</p>
         </div>
         <div className="work-grid">
-          {projects.map(p=>(
-            <article key={p.id} className="card">
-              <div className="card-media"><img src={`${import.meta.env.BASE_URL}${p.cover}`} alt="" loading="lazy" decoding="async" /></div>
-              <div className="card-body">
-                <div className="meta">
-                  <LogoImg src={companies[p.brand].logo} alt={`${companies[p.brand].name} logo`} />
-                  <span className="meta-brand">{companies[p.brand].name}</span>
-                  {p.period && <span className="meta-dot">•</span>}
-                  {p.period && <span className="meta-period">{p.period}</span>}
-                </div>
-                <h3>{p.title}</h3>
-                <p className="muted">{p.summary}</p>
-                <button className="btn btn--ghost" onClick={()=>setActiveProject(p)}>Read case study</button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="experience" className="section" aria-labelledby="xp-h">
-        <div className="section-head">
-          <h2 id="xp-h">Experience</h2>
-        </div>
-        <div className="xp-grid">
-          {[
-            'stackbox','edgistify','mindseed','dtdc'
-          ].map((key)=>{
-            const x = ([
-              { company:'stackbox', name:'StackBOX', title:'Assistant Project Manager — Supply Chain & Delivery', period:'Sep 2023 – Present',
-                points:[
-                  'End-to-end launches: BRDs, SOP/KPI design, UAT, go-live, governance.',
-                  'Account lead for P&G PH rendering optimisation (rules, dashboards, training).',
-                  'Cost tracking and inter-team coordination for on-time deployments.'
-                ]},
-              { company:'edgistify', name:'Edgistify', title:'Manager, Solution Design', period:'Aug 2022 – Sep 2023',
-                points:[
-                  'Designed supply-chain solutions to improve KPIs and reduce costs.',
-                  'Drove vendor alignment and stakeholder buy-in for rollouts.'
-                ]},
-              { company:'mindseed', name:'Mindseed Education', title:'Manager, Procurement & Supply Chain', period:'Dec 2021 – Aug 2022',
-                points:[
-                  'Owned procurement strategy, benchmarking & cost analysis.',
-                  'End-to-end operational oversight and supplier performance.'
-                ]},
-              { company:'dtdc', name:'DTDC Express', title:'Branch / Ops Manager', period:'Jan 2020 – Dec 2021',
-                points:[
-                  'Cleared COVID backlog via routing & shift orchestration.',
-                  'Dashboards, training and RCA to improve service levels.'
-                ]}
-            ] as any).find((e:any)=>e.company===key)!;
-            const c = companies[key as keyof typeof companies];
+          {projects.map(p=>{
+            const c = companies[p.brand];
             return (
-              <article key={key} className="card xp-card">
-                <header className="xp-head">
-                  <h3 style={{display:'flex',alignItems:'center',gap:8}}>
-                    <img className="meta-logo" src={`${import.meta.env.BASE_URL}${c.logo}`} alt="" onError={(e)=>{(e.currentTarget as HTMLImageElement).src=`${import.meta.env.BASE_URL}logos/placeholder.svg`}}/>
-                    {x.name}
-                  </h3>
-                  <span className="xp-period">{x.period}</span>
-                </header>
-                <p className="muted">{x.title}</p>
-                <ul className="dashlist">{x.points.map((b:string)=><li key={b}>{b}</li>)}</ul>
+              <article key={p.id} className="card">
+                <div className="card-media"><img src={`${import.meta.env.BASE_URL}${p.cover}`} alt="" loading="lazy" decoding="async"/></div>
+                <div className="card-body">
+                  <div className="meta">
+                    <BrandMark brand={p.brand} />
+                    <span className="meta-brand">{c.name}</span>
+                    <span className="meta-dot">•</span>
+                    <span className="meta-flag">{c.flag}</span>
+                    {p.period && <span className="meta-dot">•</span>}
+                    {p.period && <span className="meta-period">{p.period}</span>}
+                  </div>
+                  <h3>{p.title}</h3>
+                  <p className="muted">{p.summary}</p>
+                  <a className="btn btn--ghost" href="#contact">Read case study</a>
+                </div>
               </article>
             );
           })}
         </div>
       </section>
 
-      <section id="education" className="section" aria-labelledby="edu-h">
-        <h2 id="edu-h">Education & Certifications</h2>
+      <section id="experience" className="section" aria-labelledby="xp-h">
+        <div className="section-head"><h2 id="xp-h">Experience</h2></div>
+        <div className="xp-grid">
+          {xp.map(row=>{
+            const key = row.company as keyof typeof companies;
+            const c = companies[key];
+            return (
+              <article key={key} className="card xp-card">
+                <header className="xp-head">
+                  <h3 style={{display:'flex',alignItems:'center',gap:8}}>
+                    <BrandMark brand={key} /> {c.name}
+                  </h3>
+                  <span className="xp-period">{row.period} <span aria-hidden="true">•</span> <span className="meta-flag">{c.flag}</span></span>
+                </header>
+                <p className="muted">{row.title}</p>
+                <ul className="dashlist">{row.bullets.map(b=><li key={b}>{b}</li>)}</ul>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section id="education" className="section">
+        <h2>Education & Certifications</h2>
         <ul className="edu-list">
-          {[
-            { school:'Mumbai University — B.E. Mechanical Engineering', line:'2015–2019' },
-            { school:'Atomic Energy Junior College — HSC (Computer Science)', line:'2013–2015' },
-            { school:'Atomic Energy Central School — SSC', line:'2012–2013' },
-            { school:'Certifications', line:'Lean Six Sigma Foundations · SAP S/4HANA Essentials · Project Mgmt Foundations · Root Cause Analysis · Supply Chain Foundations' }
-          ].map(e=>(<li key={e.school}><strong>{e.school}</strong> <span className="muted">— {e.line}</span></li>))}
+          <li><strong>Mumbai University — B.E. Mechanical Engineering</strong> <span className="muted">— 2015–2019</span></li>
+          <li><strong>Atomic Energy Junior College — HSC (Computer Science)</strong> <span className="muted">— 2013–2015</span></li>
+          <li><strong>Atomic Energy Central School — SSC</strong> <span className="muted">— 2012–2013</span></li>
+          <li><strong>Certifications</strong> <span className="muted">— Lean Six Sigma Foundations · SAP S/4HANA Essentials · Project Mgmt Foundations · Root Cause Analysis · Supply Chain Foundations</span></li>
         </ul>
       </section>
 

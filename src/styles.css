@@ -115,3 +115,21 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:8
 .xp-card .xp-head img[src*="mindseed"] + *::after{ content:"  🇮🇳"; }
 .xp-card .xp-head img[src*="dtdc"]     + *::after{ content:"  🇮🇳"; }
 
+
+/* ----- text logo chip fallback ----- */
+.logo-chip{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:20px; min-width:34px; padding:0 8px; border-radius:6px;
+  font: 600 11px/1 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing:.2px;
+  color:#0a0a0a; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.08) inset;
+}
+
+/* keep earlier brand rules */
+.meta-logo{ filter:none!important; background:transparent; }
+.meta-logo[src*="stackbox"]{
+  background:#fff; padding:4px 6px; border-radius:6px;
+  box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+}
+.meta-logo[src*="dtdc"]{ height:22px; width:auto; }
+
