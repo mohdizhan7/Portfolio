@@ -400,3 +400,6 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 /* tighten grids and dividers */
 .xp-grid,.work-grid{grid-column-gap:24px;grid-row-gap:28px}
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.08),transparent);margin:56px 0}
+/* tighten grids and divider */
+.xp-grid, .work-grid { grid-column-gap: 24px; grid-row-gap: 28px; }
+.break { height:1px; margin:56px 0; background:linear-gradient(90deg,transparent,rgba(0,0,0,.08),transparent); }
