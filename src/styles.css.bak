@@ -1,0 +1,52 @@
+/* Reset + Smooth look */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f5f5f7, #e5e5ea);
+  color: #1d1d1f;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+}
+
+header {
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn--primary {
+  background: #0071e3;
+  color: white;
+}
+
+.btn--primary:hover {
+  background: #005bb5;
+}
+
+.btn--ghost {
+  border: 1px solid #0071e3;
+  color: #0071e3;
+}
+
+.btn--ghost:hover {
+  background: #0071e3;
+  color: white;
+}
