@@ -1,3 +1,4 @@
+import { logos, covers } from './logos';
 import { asset } from "./asset";
 import { useState } from 'react';
 import './styles.css';
