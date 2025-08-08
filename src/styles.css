@@ -449,3 +449,46 @@ body{ background: var(--bg); color: var(--text); }
   background: linear-gradient(90deg, var(--accent), transparent);
   border-radius: 2px;
 }
+/* === HERO: small avatar, big headline, smooth gradient background === */
+.hero{
+  position: relative;
+  isolation: isolate;
+  padding: 120px 0 72px;
+}
+.hero::before{
+  /* soft Apple-ish glow behind the hero */
+  content:"";
+  position:absolute; inset:-6% -12% auto;
+  height:520px; z-index:-1; border-radius:32px;
+  background:
+    radial-gradient(1200px 420px at 20% 5%,
+      color-mix(in oklab, var(--accent) 36%, transparent) 0%,
+      transparent 60%),
+    radial-gradient(900px 480px at 85% -10%,
+      color-mix(in oklab, var(--accent) 24%, transparent) 0%,
+      transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,.02), transparent 40%);
+  opacity:.9;
+}
+.hero .avatar{
+  width:140px; height:140px; border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 8px 40px rgba(0,0,0,.35);
+}
+.hero h1{
+  font-size:clamp(40px, 6.2vw, 84px);
+  line-height:1.05; letter-spacing:-.02em;
+  max-width:18ch;
+}
+.hero .tagline{
+  font-size:clamp(16px, 1.5vw, 20px);
+  max-width:70ch; color:var(--text-2);
+}
+/* make top feel more even under the floating nav */
+.nav + .hero{ margin-top: 10px; }
+
+@media (max-width: 720px){
+  .hero{ padding:88px 0 56px; }
+  .hero .avatar{ width:88px; height:88px; }
+  .hero h1{ font-size:clamp(32px, 9vw, 46px); }
+}
