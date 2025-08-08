@@ -396,3 +396,7 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 
 /* Make lists breathe on small cards */
 .xp-card .dashlist{ margin-top:6px; }
+
+/* tighten grids and dividers */
+.xp-grid,.work-grid{grid-column-gap:24px;grid-row-gap:28px}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,.08),transparent);margin:56px 0}
