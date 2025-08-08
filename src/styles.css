@@ -1,8 +1,20 @@
 :root{
+  /* Light theme */
   --bg:#fbfbfd; --ink:#0b0b0c; --muted:#6e6e73; --edge:#e5e5ea; --panel:rgba(255,255,255,.86);
   --accent-1:#0071e3; --accent-2:#6e5ce6;
   --accent-grad: linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  --shadow: 0 8px 30px rgba(0,0,0,.06);
 }
+
+/* Dark theme overrides */
+:root[data-theme="dark"]{
+  --bg:#0b0c10; --ink:#f5f7ff; --muted:#a0a3ad; --edge:#26262b; --panel:rgba(20,22,28,.72);
+  --accent-1:#7aa9ff; --accent-2:#a28bff; /* tuned for contrast on dark */
+  --accent-grad: linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  --shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+
+/* Optional accent themes (you already have the switcher in App.tsx) */
 :root[data-accent="indigo"]{ --accent-1:#0071e3; --accent-2:#6e5ce6; }
 :root[data-accent="green"] { --accent-1:#0a7c48; --accent-2:#2cd05a; }
 :root[data-accent="pink"]  { --accent-1:#ff3b6e; --accent-2:#ff7ab5; }
@@ -11,11 +23,11 @@
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth; scroll-snap-type:y proximity;}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Inter,Arial,sans-serif;
+  font-family:Inter, -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;
   color:var(--ink);
   background:
-    radial-gradient(1200px 800px at 20% -10%, #e6f0ff 0%, transparent 32%),
-    radial-gradient(900px 600px at 90% 0%, #ede9fe 0%, transparent 26%),
+    radial-gradient(1200px 800px at 20% -10%, color-mix(in oklab, var(--accent-1) 16%, transparent) 0%, transparent 32%),
+    radial-gradient(900px 600px at 90% 0%, color-mix(in oklab, var(--accent-2) 16%, transparent) 0%, transparent 26%),
     var(--bg);
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
@@ -26,18 +38,19 @@ hr{border:0;border-top:1px solid var(--edge);margin:32px 0}
 /* sticky frosted nav */
 .nav{
   position:sticky; top:12px; z-index:50; margin:10px auto 0; padding:10px 14px;
-  background:var(--panel); border:1px solid rgba(0,0,0,.06);
+  background:var(--panel); border:1px solid color-mix(in oklab, var(--ink) 8%, transparent);
   border-radius:16px; backdrop-filter:saturate(180%) blur(14px);
-  box-shadow:0 8px 30px rgba(0,0,0,.06); display:block; max-width:1120px;
+  box-shadow:var(--shadow); display:block; max-width:1120px;
 }
 .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
 .nav a{padding:6px 10px; border-radius:10px}
-.nav a:hover{background:rgba(0,0,0,.05)}
+.nav a:hover{background:color-mix(in oklab, var(--ink) 6%, transparent)}
 .swatches{display:flex; gap:8px; align-items:center}
-.swatch{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);cursor:pointer}
+.swatch{width:16px;height:16px;border-radius:50%;border:1px solid color-mix(in oklab, var(--ink) 15%, transparent);cursor:pointer}
 .swatch.indigo{background:linear-gradient(135deg,#0071e3,#6e5ce6)}
 .swatch.green{ background:linear-gradient(135deg,#0a7c48,#2cd05a)}
 .swatch.pink{  background:linear-gradient(135deg,#ff3b6e,#ff7ab5)}
+.theme-toggle{border:1px solid var(--edge); border-radius:999px; padding:6px 10px; background:transparent; cursor:pointer}
 
 /* progress bar */
 .progress{position:fixed; left:0; top:0; height:2px; width:0; z-index:60; background:var(--accent-grad)}
@@ -48,14 +61,14 @@ hr{border:0;border-top:1px solid var(--edge);margin:32px 0}
   width:80px; height:80px; border-radius:50% !important; object-fit:cover;
   border:1px solid var(--edge); box-shadow:0 4px 20px rgba(0,0,0,.08)
 }
-h1{font-size:clamp(32px,4.2vw,56px); line-height:1.05; margin:0 0 8px}
-.title{margin:0; color:var(--muted); font-weight:700}
+h1{font-size:clamp(32px,4.2vw,56px); line-height:1.05; margin:0 0 8px; letter-spacing:-.01em}
+.title{margin:0; color:var(--muted); font-weight:600}
 .tagline{margin:12px 0 0; color:var(--muted)}
 .cta{display:flex; gap:12px; margin-top:18px}
-.btn{border:1px solid #000; border-radius:999px; padding:10px 16px; font-weight:600; display:inline-block; transition:.25s ease}
+.btn{border:1px solid color-mix(in oklab, var(--ink) 50%, transparent); border-radius:999px; padding:10px 16px; font-weight:600; display:inline-block; transition:.25s ease}
 .btn:hover{transform:translateY(-2px)}
 .btn--ghost{border-color:var(--edge); color:var(--muted)}
-.btn--primary{border:0; background:var(--accent-grad); color:#fff; box-shadow:0 8px 24px rgba(0,113,227,.25)}
+.btn--primary{border:0; background:var(--accent-grad); color:#fff; box-shadow:0 8px 24px color-mix(in oklab, var(--accent-1) 25%, transparent)}
 .btn--primary:hover{filter:saturate(110%)}
 
 /* sections */
@@ -80,11 +93,12 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 .dashlist{list-style:none; margin:8px 0 10px 0; padding-left:0}
 .dashlist li{position:relative; padding-left:16px; margin:6px 0}
 .dashlist li::before{content:"—"; position:absolute; left:0; color:var(--muted)}
-.pill{display:inline-block; font-size:12px; padding:4px 8px; border:1px solid #000; border-radius:999px; margin:4px 0 6px; font-weight:600}
+.pill{display:inline-block; font-size:12px; padding:4px 8px; border:1px solid color-mix(in oklab, var(--ink) 50%, transparent); border-radius:999px; margin:4px 0 6px; font-weight:600}
 
-/* right-side dots */
+/* dots */
 .dots{position:fixed; right:16px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:55}
 .dot{width:8px; height:8px; border-radius:50%; background:#c7c7cc; border:1px solid rgba(0,0,0,.1)}
+:root[data-theme="dark"] .dot{ background:#4a4a50; border-color:#2a2a2e }
 .dot.active{background:transparent; border-color:transparent; box-shadow:0 0 0 2px var(--edge), 0 0 0 6px rgba(0,0,0,.06), inset 0 0 0 8px var(--accent-1)}
 
 /* small screens */
