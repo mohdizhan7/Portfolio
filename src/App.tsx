@@ -156,44 +156,42 @@ export default function App() {
       </div>
 
       {/* hero */}
-      <section className="hero" ref={heroRef}>
-<picture>
-  <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
-<picture>
-  <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
-  <motion.img
-    src={`${import.meta.env.BASE_URL}izhan.jpg`}
-    alt="Mohd Izhan Shaikh"
-    className="avatar"
-    width={80}
-    height={80}
-    decoding="async"
-    loading="eager"
-    fetchPriority="high"
-    style={{ y: imgY }}
-    initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }}
-  />
-</picture>
-        <motion.div
-          style={{ y: textY }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-        >
-          <h1>Mohd Izhan Shaikh</h1>
-          <p className="title">Assistant Project Manager, StackBOX — Supply Chain & Project Delivery</p>
-          <p className="tagline">
-            Transforming FMCG operations with data-driven process design, SOPs/KPIs, and cost control.
-          </p>
-          <div className="cta">
-            <Magnet href="#work" className="btn btn--primary">View Work</Magnet>
-            <Magnet href="#contact" className="btn btn--ghost">Contact</Magnet>
-          </div>
-        </motion.div>
-      </section>
+<section className="hero" ref={heroRef}>
+  <picture>
+    <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" />
+    <motion.img
+      src={`${import.meta.env.BASE_URL}izhan.jpg`}
+      alt="Mohd Izhan Shaikh"
+      className="avatar"
+      width={80}
+      height={80}
+      decoding="async"
+      loading="eager"
+      fetchPriority="high"
+      style={{ y: imgY }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    />
+  </picture>
 
+  <motion.div
+    style={{ y: textY }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6, delay: 0.05 }}
+  >
+    <h1>Mohd Izhan Shaikh</h1>
+    <p className="title">Assistant Project Manager, StackBOX — Supply Chain & Project Delivery</p>
+    <p className="tagline">
+      Transforming FMCG operations with data-driven process design, SOPs/KPIs, and cost control.
+    </p>
+    <div className="cta">
+      <Magnet href="#work" className="btn btn--primary">View Work</Magnet>
+      <Magnet href="#contact" className="btn btn--ghost">Contact</Magnet>
+    </div>
+  </motion.div>
+</section>
       <hr />
 
       {/* about */}
