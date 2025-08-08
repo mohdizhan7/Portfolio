@@ -38,7 +38,7 @@ const projects: Project[] = [
     id:'itc', brand:'itc', period:'2023–24',
     title:'WMS/TMS Site Setup & Operational Ramp',
     summary:'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.',
-    cover:'logos/itc.jpg',   // your Pinterest (2)
+    cover:'logos/dtdc.jpg',   // your Pinterest (2)
     caseStudy:{
       context:'ITC required rapid stand-up of two warehouses with clear KPIs and governance.',
       role:'Assistant Project Manager (StackBOX), cross-functional with product/ops.',
@@ -58,7 +58,7 @@ const projects: Project[] = [
     id:'pg', brand:'pg', period:'2023–24',
     title:'Rendering Optimisation (Philippines)',
     summary:'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.',
-    cover:'logos/pg.jpg',    // your Pinterest (1)
+    cover:'logos/itc.jpg',    // your Pinterest (1)
     caseStudy:{
       context:'Rendering exceptions and throughput variability created delays.',
       role:'Account Lead / PM for the PH program.',
@@ -78,7 +78,7 @@ const projects: Project[] = [
     id:'dtdc', brand:'dtdc', period:'2020',
     title:'COVID Backlog Clearance',
     summary:'Partner network + routing & shift orchestration to clear backlog quickly.',
-    cover:'logos/dtdc.jpg',  // your Pinterest base image
+    cover:'logos/pg.jpg',  // your Pinterest base image
     caseStudy:{
       context:'Branch faced a COVID-era delivery backlog.',
       role:'Branch/Ops Manager leading a 25-member team.',
