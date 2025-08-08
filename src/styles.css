@@ -238,3 +238,26 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:8
 
 /* keep readability on dense points */
 .card p, .card li{ line-height:1.6 }
+/* Readability in cards */
+.card h3{ font-size:22px; line-height:1.25; letter-spacing:-.01em; }
+.card p, .card li{ font-size:16.5px; line-height:1.65; }
+
+/* Button: turn ghost into accent pill */
+.card .btn.btn--ghost{
+  font-size:15.5px;
+  padding:10px 14px;
+  color:#fff;
+  background:linear-gradient(180deg,
+    color-mix(in oklab, var(--accent) 92%, #000 0%),
+    color-mix(in oklab, var(--accent) 74%, #000 0%));
+  border:0;
+  border-radius:12px;
+  box-shadow:0 6px 18px color-mix(in oklab, var(--accent) 25%, transparent);
+  transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+.card .btn.btn--ghost:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+.card .btn.btn--ghost:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+/* Ensure no pseudo-bullets sneak back */
+.card .dashlist{ list-style:none; padding:0; margin:10px 0 14px; }
+.card .dashlist li::before{ content:none !important; }
