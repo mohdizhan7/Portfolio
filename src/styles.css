@@ -373,3 +373,26 @@ ul{margin:10px 0 0 18px; line-height:1.6}
 .trust-logos li img:hover{filter:none;opacity:.9}
 .card-head{display:flex;align-items:center;justify-content:flex-start;margin-bottom:8px}
 .company-logo{height:20px;width:auto;opacity:.9}
+
+/* Seamless 1px gradient divider (replaces heavy <hr>) */
+.break{
+  height:1px;
+  margin: clamp(28px, 5vw, 48px) 0;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--ink) 12%, transparent), transparent);
+  border:0;
+}
+
+/* Experience grid */
+.xp-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
+.xp-card{ padding:18px; display:flex; flex-direction:column; }
+.xp-head{ display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:8px; }
+.xp-meta .xp-title{ margin:0 0 2px 0; font-size:18px; }
+.xp-period{ color:var(--muted); font-size:12px; white-space:nowrap; }
+
+/* Make lists breathe on small cards */
+.xp-card .dashlist{ margin-top:6px; }
