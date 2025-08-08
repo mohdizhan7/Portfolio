@@ -106,3 +106,47 @@ ul{margin:10px 0 0 18px; line-height:1.6}
   .hero{grid-template-columns:64px 1fr; gap:16px}
   .avatar{width:64px; height:64px}
 }
+/* --- A11y additions -------------------------------------------------- */
+/* Strong focus indicator (respects theme) */
+:focus-visible{
+  outline: 3px solid var(--accent-1);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Skip to content link */
+.skip-link{
+  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  left:16px; top:16px; width:auto; height:auto; padding:10px 14px;
+  background:var(--accent-grad); color:#fff; border-radius:10px; z-index:1000;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+
+/* Screen-reader-only utility (for invisible labels if ever needed) */
+.sr-only{
+  position:absolute!important; width:1px!important; height:1px!important;
+  padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important; border:0!important;
+}
+
+/* Dark theme contrast bump */
+:root[data-theme="dark"]{
+  --bg:#0b0c10;
+  --ink:#f6f7fb;        /* a bit brighter text */
+  --muted:#c0c4ce;      /* more contrast for secondary text */
+  --edge:#34363d;
+  --panel:rgba(20,22,28,.86); /* less transparent panel for contrast */
+}
+
+/* Make ghost buttons readable on dark panels */
+:root[data-theme="dark"] .btn--ghost{
+  color:#e5e7ef;
+  border-color: color-mix(in oklab, var(--ink) 35%, transparent);
+}
+
+/* Ensure nav links have a visible hover even in dark */
+.nav a:hover{
+  background: color-mix(in oklab, var(--ink) 12%, transparent);
+}
