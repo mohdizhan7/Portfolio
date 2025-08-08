@@ -284,7 +284,7 @@ export default function App() {
         <motion.h2 id="work-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }}>
           Work
         </motion.h2>
-        <div className="grid" role="list">
+        <div className="work-grid" role="list">
           {projects.map((p) => (
             <motion.article
               key={p.title}
