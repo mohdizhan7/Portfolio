@@ -1,0 +1,42 @@
+:root { --ink:#0b0b0b; --muted:#666; --edge:#e9e9e9; }
+* { box-sizing:border-box; }
+body { font-family: ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial; margin:0; color:var(--ink); background:#fff; }
+main { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+/* HERO */
+.hero { display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:center; padding:48px 0 24px; }
+.avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border:2px solid var(--edge); }
+h1 { font-size: clamp(28px, 4vw, 48px); margin: 0 0 8px; line-height:1.1; }
+.title { margin:0 0 8px; font-weight:600; }
+.tagline { margin:0; color:var(--muted); }
+
+.section { padding: 28px 0; border-top:1px solid var(--edge); }
+h2 { font-size: 22px; margin: 0 0 12px; }
+.xp { margin:18px 0 8px; }
+.muted { color:var(--muted); margin:4px 0 8px; }
+ul { margin: 8px 0 0 18px; line-height:1.5; }
+a { color: var(--ink); text-underline-offset: 3px; }
+
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+.chip { padding:6px 10px; border:1px solid var(--ink); border-radius:999px; font-size:14px; }
+.chip--ghost { border-color:var(--edge); color:var(--muted); }
+
+/* Work grid */
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: 10px; }
+.card { border: 1px solid var(--edge); border-radius: 12px; padding: 14px; background: #fff;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.08); border-color: #dcdcdc; }
+.dashlist { margin: 8px 0 10px 0; padding-left: 0; list-style: none; }
+.dashlist li { position: relative; padding-left: 16px; margin: 6px 0; }
+.dashlist li::before { content: "—"; position: absolute; left: 0; color: var(--muted); }
+.pill { display: inline-block; font-size: 12px; letter-spacing:.02em; padding: 4px 8px; border:1px solid var(--ink);
+  border-radius:999px; margin: 4px 0 6px; font-weight: 600; }
+
+/* reveal on scroll */
+.reveal { opacity:0; transform: translateY(12px); transition: 500ms ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+@media (max-width:700px) {
+  .hero { grid-template-columns:64px 1fr; gap:16px; }
+  .avatar { width:64px; height:64px; }
+}
