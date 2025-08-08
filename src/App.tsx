@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  motion, useMotionValue, useSpring, useScroll, useTransform, useReducedMotion
-} from 'framer-motion';
+import { motion, useMotionValue, useSpring, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import type { HTMLMotionProps, MotionStyle } from 'framer-motion';
 import './styles.css';
 
@@ -38,55 +36,33 @@ function TrustBar(){
   return (
     <section className="trust" aria-label="Companies I’ve worked with">
       <p className="trust-label">Trusted by teams at</p>
-      <ul className="trust-logos">{logos.map(l => (
-        <li key={l.alt}><img src={`${import.meta.env.BASE_URL}${l.src}`} alt={l.alt} loading="lazy" /></li>
-      ))}</ul>
+      <ul className="trust-logos">
+        {logos.map(l => (<li key={l.alt}><img src={`${import.meta.env.BASE_URL}${l.src}`} alt={l.alt} loading="lazy" /></li>))}
+      </ul>
     </section>
   );
 }
 
 type Project = {
   id:string; brand:string; logo:string;
-  title:string; role:string; bullets:string[]; impact:string;
-  thumb:string; gallery:string[];
+  title:string; role:string; bullets:string[]; impact:string; thumb:string; gallery:string[];
 };
 const projects: Project[] = [
-  {
-    id:'itc', brand:'ITC', logo:'itc.svg',
-    title:'ITC — WMS/TMS Site Setup & Ops Ramp',
-    role:'Assistant Project Manager · StackBOX',
-    bullets:[
-      'Stabilized 2 sites in 6 weeks; SLA breaches -38%.',
-      'CAPEX variance within ±2%; SOPs/KPIs fully adopted.',
-    ],
+  { id:'itc', brand:'ITC', logo:'itc.svg',
+    title:'ITC — WMS/TMS Site Setup & Ops Ramp', role:'Assistant Project Manager · StackBOX',
+    bullets:['Stabilized 2 sites in 6 weeks; SLA breaches -38%.','CAPEX variance within ±2%; SOPs/KPIs fully adopted.'],
     impact:'Owned BRD→SOP/KPI design, testing, deployment & governance.',
-    thumb:'projects/itc-thumb.svg',
-    gallery:['projects/itc-1.svg','projects/itc-2.svg'],
-  },
-  {
-    id:'pg', brand:'P&G', logo:'pg.svg',
-    title:'P&G Philippines — Rendering Process Optimisation',
-    role:'Project Manager / Account Lead',
-    bullets:[
-      'Throughput +14%, exceptions -22% via tuned rules & dashboards.',
-      'Upskilled floor teams; KPI uplift sustained post-rollout.',
-    ],
+    thumb:'projects/itc-thumb.svg', gallery:['projects/itc-1.svg','projects/itc-2.svg'] },
+  { id:'pg', brand:'P&G', logo:'pg.svg',
+    title:'P&G Philippines — Rendering Process Optimisation', role:'Project Manager / Account Lead',
+    bullets:['Throughput +14%, exceptions -22% via tuned rules & dashboards.','Upskilled floor teams; KPI uplift sustained post-rollout.'],
     impact:'AS-IS→TO-BE, config, dashboards and rollout oversight.',
-    thumb:'projects/pg-thumb.svg',
-    gallery:['projects/pg-1.svg','projects/pg-2.svg'],
-  },
-  {
-    id:'dtdc', brand:'DTDC', logo:'dtdc.svg',
-    title:'DTDC — COVID Backlog Clearance',
-    role:'Branch / Ops Manager',
-    bullets:[
-      'Cleared 15,000-shipment backlog within one week.',
-      'On-time rate restored via routing & shift orchestration.',
-    ],
+    thumb:'projects/pg-thumb.svg', gallery:['projects/pg-1.svg','projects/pg-2.svg'] },
+  { id:'dtdc', brand:'DTDC', logo:'dtdc.svg',
+    title:'DTDC — COVID Backlog Clearance', role:'Branch / Ops Manager',
+    bullets:['Cleared 15,000-shipment backlog within one week.','On-time rate restored via routing & shift orchestration.'],
     impact:'Partner network + routing optimization under constraints.',
-    thumb:'projects/dtdc-thumb.svg',
-    gallery:['projects/dtdc-1.svg','projects/dtdc-2.svg'],
-  },
+    thumb:'projects/dtdc-thumb.svg', gallery:['projects/dtdc-1.svg','projects/dtdc-2.svg'] },
 ];
 
 type Experience = {
@@ -100,20 +76,11 @@ const experience: Experience[] = [
       'Drove cost tracking and inter-team coordination for on-time deployments.'
     ]},
   { company:'Edgistify', logo:'edgistify.svg', title:'Manager, Solution Design', period:'—',
-    bullets:[
-      'Designed tailored supply-chain solutions to improve KPIs and reduce costs.',
-      'Built vendor alignment and stakeholder buy-in for rollouts.'
-    ]},
+    bullets:['Designed tailored supply-chain solutions to improve KPIs and reduce costs.','Built vendor alignment and stakeholder buy-in for rollouts.']},
   { company:'Mindseed Education', logo:'mindseed.svg', title:'Manager, Procurement & Supply Chain', period:'—',
-    bullets:[
-      'Owned procurement strategy, benchmarking and cost analysis across categories.',
-      'Drove end-to-end operational oversight and supplier performance.'
-    ]},
+    bullets:['Owned procurement strategy, benchmarking and cost analysis across categories.','Drove end-to-end operational oversight and supplier performance.']},
   { company:'DTDC Express', logo:'dtdc.svg', title:'Branch / Ops Manager', period:'—',
-    bullets:[
-      'Cleared 15,000-shipment COVID backlog in one week via routing & shift orchestration.',
-      'Implemented dashboards, training and RCA for better service levels.'
-    ]},
+    bullets:['Cleared 15,000-shipment COVID backlog in one week via routing & shift orchestration.','Implemented dashboards, training and RCA for better service levels.']},
 ];
 
 export default function App(){
@@ -145,7 +112,6 @@ export default function App(){
   const imgY  = useTransform(scrollYProgress, [0,1], reduceMotion ? [0,0] : [-8,16]);
   const textY = useTransform(scrollYProgress, [0,1], reduceMotion ? [0,0] : [ 8,-10]);
 
-  // modal for work gallery
   const [modalOpen,setModalOpen]=useState(false);
   const [modalIdx,setModalIdx]=useState(0);
   const [current,setCurrent]=useState<Project|null>(null);
@@ -172,33 +138,25 @@ export default function App(){
         <div className="nav-inner">
           <strong>Mohd Izhan Shaikh</strong>
           <nav aria-label="Primary" style={{display:'flex',gap:12,alignItems:'center'}}>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#work">Work</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-            <div className="swatches" aria-label="Accent colors" role="group">
-              <button type="button" className="swatch indigo" onClick={()=>setAccent('indigo')} title="Indigo" aria-pressed={accent==='indigo'} />
-              <button type="button" className="swatch green"  onClick={()=>setAccent('green')}  title="Green"  aria-pressed={accent==='green'} />
-              <button type="button" className="swatch pink"   onClick={()=>setAccent('pink')}   title="Pink"   aria-pressed={accent==='pink'} />
+            <a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a>
+            <a href="#skills">Skills</a><a href="#contact">Contact</a>
+            <div className="swatches" role="group" aria-label="Accent colors">
+              <button type="button" className="swatch indigo" onClick={()=>setAccent('indigo')} aria-pressed={accent==='indigo'} />
+              <button type="button" className="swatch green"  onClick={()=>setAccent('green')}  aria-pressed={accent==='green'} />
+              <button type="button" className="swatch pink"   onClick={()=>setAccent('pink')}   aria-pressed={accent==='pink'} />
             </div>
           </nav>
         </div>
       </div>
 
-      {/* HERO */}
       <section className="hero" ref={heroRef as any}>
         <div className="hero-bg" aria-hidden="true"></div>
         <picture>
           <source srcSet={`${import.meta.env.BASE_URL}izhan.webp`} type="image/webp" sizes="(max-width:700px) 56px, 80px" />
-          <motion.img
-            src={`${import.meta.env.BASE_URL}izhan.jpg`} alt="Portrait of Mohd Izhan Shaikh"
+          <motion.img src={`${import.meta.env.BASE_URL}izhan.jpg`} alt="Portrait of Mohd Izhan Shaikh"
             className="avatar" width={80} height={80} loading="eager" decoding="async" fetchPriority="high"
-            style={{ y: imgY }}
-            initial={{opacity:0, scale: reduceMotion ? 1 : .95}}
-            animate={{opacity:1, scale:1}}
-            transition={reduceMotion ? {duration:0}:{duration:.5}}
-          />
+            style={{ y: imgY }} initial={{opacity:0, scale: reduceMotion ? 1 : .95}} animate={{opacity:1, scale:1}}
+            transition={reduceMotion ? {duration:0}:{duration:.5}}/>
         </picture>
         <motion.div style={{ y: textY }} variants={stagger} initial="hidden" animate="show">
           <motion.h1 variants={rise}>Mohd Izhan Shaikh</motion.h1>
@@ -220,40 +178,42 @@ export default function App(){
       <section id="about" className="section" aria-labelledby="about-heading">
         <motion.h2 id="about-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>About</motion.h2>
         <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>
-          Supply chain professional (6+ yrs) across logistics, procurement, and operations for ITC, HUL &amp; P&amp;G.
-          Lean Six Sigma + RCA certified. I design SOPs/KPIs, lead implementations, and deliver measurable efficiency and growth.
+          Supply chain professional (6+ yrs) across logistics, procurement, and operations for ITC, HUL &amp; P&amp;G. Lean Six Sigma + RCA certified.
+          I design SOPs/KPIs, lead implementations, and deliver measurable efficiency and growth.
         </motion.p>
       </section>
 
       <div className="break" aria-hidden="true" />
 
-      {/* EXPERIENCE — responsive grid */}
+      {/* EXPERIENCE — Alternating timeline (no side scroll) */}
       <section id="experience" className="section section--surface" aria-labelledby="exp-heading">
         <motion.h2 id="exp-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Experience</motion.h2>
-        <div className="xp-row" role="list">
-          {experience.map((x)=>(
-            <motion.article key={x.company} className="card xp-card" role="listitem"
-              variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.35}}>
-              <header className="xp-head">
-                <img className="company-logo" src={`${import.meta.env.BASE_URL}logos/${x.logo}`} alt={`${x.company} logo`} loading="lazy" height={18}/>
-                <div className="xp-meta">
-                  <h3 className="xp-title">{x.company}</h3>
-                  <p className="muted">{x.title}</p>
-                </div>
-                <span className="xp-period">{x.period}</span>
-              </header>
-              <ul className="dashlist">{x.bullets.map(b=> <li key={b}>{b}</li>)}</ul>
-            </motion.article>
+        <ol className="xp-timeline" role="list">
+          {experience.map((x, i)=>(
+            <li key={x.company} className={`xp-item ${i%2 ? 'right' : 'left'}`} role="listitem">
+              <span className="xp-dot" aria-hidden="true" />
+              <article className="card xp-card">
+                <header className="xp-head">
+                  <img className="company-logo" src={`${import.meta.env.BASE_URL}logos/${x.logo}`} alt={`${x.company} logo`} loading="lazy" height={18}/>
+                  <div className="xp-meta">
+                    <h3 className="xp-title">{x.company}</h3>
+                    <p className="muted">{x.title}</p>
+                  </div>
+                  <span className="xp-period">{x.period}</span>
+                </header>
+                <ul className="dashlist">{x.bullets.map(b=> <li key={b}>{b}</li>)}</ul>
+              </article>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <div className="break" aria-hidden="true" />
 
-      {/* WORK */}
+      {/* WORK (unchanged grid) */}
       <section id="work" className="section section--surface" aria-labelledby="work-heading">
         <motion.h2 id="work-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Selected Work</motion.h2>
-        <div className="work-row" role="list">
+        <div className="work-grid" role="list">
           {projects.map(p=>(
             <motion.article key={p.id} className="card" role="listitem"
               variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.35}}
@@ -279,7 +239,6 @@ export default function App(){
 
       <div className="break" aria-hidden="true" />
 
-      {/* SKILLS */}
       <section id="skills" className="section" aria-labelledby="skills-heading">
         <motion.h2 id="skills-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>
           Skills &amp; Certifications
@@ -292,7 +251,6 @@ export default function App(){
 
       <div className="break" aria-hidden="true" />
 
-      {/* CONTACT */}
       <section id="contact" className="section" aria-labelledby="contact-heading">
         <motion.h2 id="contact-heading" variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.5}}>Contact</motion.h2>
         <motion.p variants={fadeUp} initial="hidden" whileInView="show" viewport={{once:true,amount:.45}}>
@@ -301,7 +259,6 @@ export default function App(){
         </motion.p>
       </section>
 
-      {/* dots nav */}
       <nav className="dots" aria-label="Section navigation">
         {sections.map(id=>(
           <a key={id} href={`#${id}`} className={`dot ${active===id?'active':''}`}
@@ -309,7 +266,6 @@ export default function App(){
         ))}
       </nav>
 
-      {/* MODAL */}
       {modalOpen && current && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={`${current.title} gallery`}
              onClick={(e)=>{ if(e.target===e.currentTarget) closeModal(); }}>

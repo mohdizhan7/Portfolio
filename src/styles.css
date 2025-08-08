@@ -172,3 +172,55 @@ main{ max-width: 1040px; } /* was 1200 — gives breathing room */
 .xp-card{ padding: clamp(18px, 2.2vw, 24px); }
 
 .break{ margin: clamp(24px, 4.5vw, 40px) 0; } /* slightly bigger section rhythm */
+/* Alternating timeline for Experience */
+.section--surface{
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+  padding: clamp(16px, 2.4vw, 28px);
+}
+
+.xp-timeline{
+  position:relative;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style:none;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+@media (min-width: 980px){
+  .xp-timeline{
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 32px;
+  }
+  .xp-timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0; bottom:0;
+    width:2px;
+    background: color-mix(in oklab, var(--ink) 12%, transparent);
+    transform: translateX(-1px);
+  }
+}
+.xp-item{ position:relative; }
+@media (min-width: 980px){
+  .xp-item.left{ grid-column: 1; padding-right: 24px; }
+  .xp-item.right{ grid-column: 2; padding-left: 24px; }
+}
+.xp-dot{
+  position:absolute;
+  top: 32px;
+  left: 50%;
+  width:12px; height:12px; border-radius:999px;
+  background: var(--accent);
+  border: 2px solid var(--panel);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+@media (max-width: 979px){
+  .xp-dot{ display:none; }
+}
+
+.xp-card{ padding: clamp(18px, 2.2vw, 24px); }
