@@ -104,3 +104,41 @@ h2{ font-size: clamp(22px, 2.4vw, 28px); margin: 8px 0 14px }
 .modal__close{ position:absolute; top:12px; right:12px; width:36px; height:36px; line-height:34px; border-radius:999px; background:transparent; color:var(--ink); border:1px solid var(--edge); cursor:pointer }
 .modal__close:focus-visible, .modal__controls button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px }
 @media (max-width:640px){ .work-grid,.xp-grid{ grid-template-columns:1fr } }
+
+/* --- Horizontal sections (scroll-snap) --- */
+.xp-row,
+.work-row{
+  display: grid;
+  grid-auto-flow: column;
+  /* Card width per snap: tweak to taste */
+  grid-auto-columns: min(360px, 92vw);
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.work-row{ grid-auto-columns: min(420px, 92vw); }
+
+.xp-row::-webkit-scrollbar,
+.work-row::-webkit-scrollbar{ height: 0; }
+
+.xp-row > .card,
+.work-row > .card{ scroll-snap-align: start; }
+
+/* Keep card hover nice even when scrolling */
+.xp-row > .card:hover,
+.work-row > .card:hover{ transform: translateY(-3px); }
+
+/* Reduced-motion users still get horizontal but no bouncy transforms */
+@media (prefers-reduced-motion: reduce){
+  .xp-row > .card:hover,
+  .work-row > .card:hover{ transform: none; }
+}
+
+/* Tighten spacing around these rows a touch */
+#experience.section,
+#work.section{ margin-top: 8px; }
