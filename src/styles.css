@@ -366,3 +366,86 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;margin:0;font-weight:8
   .card__media img{ height:180px; }
   .hero{ border-radius:20px; }
 }
+
+/* ==== Locked accent + gradient hero + clearer CTAs (appended) ==== */
+:root{
+  --bg: #0b0d12;
+  --text: #e9edf3;
+  --muted: #a7b0be;
+
+  /* single accent */
+  --accent: #7c5cff;
+  --accent-2: #a06bff;
+
+  /* hero/background */
+  --hero-start: #0b0d12;
+  --hero-mid:   #151829;
+  --hero-end:   #1c1233;
+
+  /* surfaces */
+  --card: #11141c;
+  --card-2:#0e1119;
+
+  /* outlines/shadows */
+  --ring: 0 0 0 1px color-mix(in oklab, white 8%, transparent);
+  --shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+
+/* Keep dark look in both schemes for consistency */
+@media (prefers-color-scheme: light){
+  :root{
+    --text: #ffffff;
+    --muted:#d6dbea;
+    --card:#0f1220;
+    --card-2:#101426;
+  }
+}
+
+body{ background: var(--bg); color: var(--text); }
+
+/* HERO — soft Apple-ish gradient */
+.hero{
+  background:
+    radial-gradient(1200px 600px at 60% -200px, color-mix(in oklab, var(--accent) 20%, transparent), transparent 60%),
+    radial-gradient(1000px 500px at 20% -150px, color-mix(in oklab, var(--accent-2) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--hero-start), var(--hero-mid) 50%, var(--hero-end));
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* Primary button = fixed accent gradient */
+.btn--primary{
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:#fff;
+}
+.btn--primary:hover{ filter: brightness(1.06); }
+
+/* Cards pick up subtle gradient surface */
+.card{
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border: var(--ring);
+  box-shadow: var(--shadow);
+}
+
+/* Make case-study CTA obviously interactive without touching other ghost buttons */
+.card .btn--ghost{
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--accent) 55%, white 0%);
+  color: var(--text);
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+.card .btn--ghost:hover,
+.card .btn--ghost:focus-visible{
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Section heading underline using accent */
+.section h2{ position: relative; }
+.section h2::after{
+  content:"";
+  position:absolute; left:0; bottom:-10px; height:2px; width:56px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 2px;
+}
