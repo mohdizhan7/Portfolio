@@ -14,7 +14,7 @@ export default function CaseItc(){
       </header>
 
       <figure className="case__cover">
-        <img src={covers.itc} alt="" />
+        <img src={covers.itc} alt="Warehouse conveyor belts" />
       </figure>
 
       <section className="case__grid">

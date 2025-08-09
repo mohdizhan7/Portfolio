@@ -36,7 +36,9 @@ function Hero(){
 type Tile = {
   slug: string;
   cover: string;
+  coverAlt: string;
   logo: string;
+  logoAlt: string;
   title: string;
   meta: string;
   blurb: string;
@@ -44,24 +46,30 @@ type Tile = {
 const tiles: Tile[] = [
   {
     slug: 'itc-ramp',
-    cover: covers.itc,              // warehouse conveyor
+    cover: covers.itc,
+    coverAlt: 'Warehouse conveyor belts',
     logo: logos.itc,
+    logoAlt: 'ITC logo',
     title: 'WMS/TMS Site Setup & Operational Ramp',
     meta: 'ITC · 🇮🇳 · 2023–24',
     blurb: 'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.'
   },
   {
     slug: 'pg-rendering',
-    cover: covers.pg,          // bins/packaging
+    cover: covers.pg,
+    coverAlt: 'Bins and packaging in a warehouse',
     logo: logos.pg,
+    logoAlt: 'P&G logo',
     title: 'Rendering Optimisation (Philippines)',
     meta: 'P&G · 🇵🇭 · 2023–24',
     blurb: 'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.'
   },
   {
     slug: 'dtdc-backlog',
-    cover: covers.dtdc, // worker/line
+    cover: covers.dtdc,
+    coverAlt: 'Worker sorting parcels on a line',
     logo: logos.dtdc,
+    logoAlt: 'DTDC logo',
     title: 'COVID Backlog Clearance',
     meta: 'DTDC · 🇮🇳 · 2020',
     blurb: 'Partner network + routing & shift orchestration to clear backlog quickly.'
@@ -77,10 +85,10 @@ function Work(){
         {tiles.map(t=>(
           <article className="card" key={t.slug}>
             <div className="card__media">
-              <img src={t.cover} alt="" />
+              <img src={t.cover} alt={t.coverAlt} />
             </div>
             <div className="card__meta">
-              <img className="logo-badge" src={t.logo} alt="" />
+              <img className="logo-badge" src={t.logo} alt={t.logoAlt} />
               <span>{t.meta}</span>
             </div>
             <h3>{t.title}</h3>

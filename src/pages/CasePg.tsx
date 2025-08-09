@@ -14,7 +14,7 @@ export default function CasePg(){
       </header>
 
       <figure className="case__cover">
-        <img src={covers.pg} alt="" />
+        <img src={covers.pg} alt="Bins and packaging in a warehouse" />
       </figure>
 
       <section className="case__grid">

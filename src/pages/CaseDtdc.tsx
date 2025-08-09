@@ -14,7 +14,7 @@ export default function CaseDtdc(){
       </header>
 
       <figure className="case__cover">
-        <img src={covers.dtdc} alt="" />
+        <img src={covers.dtdc} alt="Worker sorting parcels on a line" />
       </figure>
 
       <section className="case__grid">
