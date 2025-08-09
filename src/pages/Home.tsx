@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-
-const BASE = import.meta.env.BASE_URL || '/';
-const img = (p:string)=> `${BASE}${p}`;
-const logo = (p:string)=> `${BASE}logos/${p}`;
+import { asset } from '../asset';
+import { logos, covers } from '../logos';
 
 function QuickFacts(){
   return (
@@ -19,7 +17,7 @@ function QuickFacts(){
 function Hero(){
   return (
     <section className="hero">
-      <img src={img('izhan.jpg')} alt="Mohd Izhan Shaikh" className="avatar" />
+      <img src={asset('izhan.jpg')} alt="Mohd Izhan Shaikh" className="avatar" />
       <h1>Designing lean, scalable<br/>supply-chain operations.</h1>
       <p className="tagline">
         Assistant Project Manager at StackBOX. I turn BRDs into SOPs/KPIs and lead WMS/TMS rollouts for FMCG, retail &amp; 3PL—clear governance, trained teams, measurable control.
@@ -27,7 +25,7 @@ function Hero(){
       <div className="cta">
         <a href="#work" className="btn btn--primary">View Work</a>
         <a href="mailto:izhan@example.com" className="btn btn--ghost">Contact</a>
-        <a className="btn btn--ghost" href={img('Izhan-Resume.pdf')} download>Download Resume</a>
+        <a className="btn btn--ghost" href={asset('Izhan-Resume.pdf')} download>Download Resume</a>
         <a className="btn btn--ghost" href="https://www.linkedin.com/in/mohdizhan7/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
       <QuickFacts/>
@@ -46,24 +44,24 @@ type Tile = {
 const tiles: Tile[] = [
   {
     slug: 'itc-ramp',
-    cover: 'work/itc-cover.jpg',              // warehouse conveyor
-    logo: 'itc.svg',
+    cover: covers.itc,              // warehouse conveyor
+    logo: logos.itc,
     title: 'WMS/TMS Site Setup & Operational Ramp',
     meta: 'ITC · 🇮🇳 · 2023–24',
     blurb: 'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.'
   },
   {
     slug: 'pg-rendering',
-    cover: 'work/pg-cover.jpg',          // bins/packaging
-    logo: 'pg.png',
+    cover: covers.pg,          // bins/packaging
+    logo: logos.pg,
     title: 'Rendering Optimisation (Philippines)',
     meta: 'P&G · 🇵🇭 · 2023–24',
     blurb: 'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.'
   },
   {
     slug: 'dtdc-backlog',
-    cover: 'work/dtdc-cover.jpg', // worker/line
-    logo: 'dtdc.png',
+    cover: covers.dtdc, // worker/line
+    logo: logos.dtdc,
     title: 'COVID Backlog Clearance',
     meta: 'DTDC · 🇮🇳 · 2020',
     blurb: 'Partner network + routing & shift orchestration to clear backlog quickly.'
@@ -79,10 +77,10 @@ function Work(){
         {tiles.map(t=>(
           <article className="card" key={t.slug}>
             <div className="card__media">
-              <img src={img(t.cover)} alt="" />
+              <img src={t.cover} alt="" />
             </div>
             <div className="card__meta">
-              <img className="logo-badge" src={logo(t.logo)} alt="" />
+              <img className="logo-badge" src={t.logo} alt="" />
               <span>{t.meta}</span>
             </div>
             <h3>{t.title}</h3>
@@ -104,7 +102,7 @@ function Experience(){
       <div className="xp-grid">
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('stackbox.png')} alt="StackBOX logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logos.stackbox} alt="StackBOX logo" />
             <span>Sep 2023 – Present · 🇮🇳</span>
           </div>
           <h3>StackBOX</h3>
@@ -118,7 +116,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge" src={logo('edgistify.png')} alt="Edgistify logo" />
+            <img className="logo-badge" src={logos.edgistify} alt="Edgistify logo" />
             <span>Aug 2022 – Sep 2023 · 🇮🇳</span>
           </div>
           <h3>Edgistify</h3>
@@ -131,7 +129,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('mindseed.png')} alt="Mindseed logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logos.mindseed} alt="Mindseed logo" />
             <span>Dec 2021 – Aug 2022 · 🇮🇳</span>
           </div>
           <h3>Mindseed Education</h3>
@@ -144,7 +142,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge" src={logo('dtdc.png')} alt="DTDC logo" />
+            <img className="logo-badge" src={logos.dtdc} alt="DTDC logo" />
             <span>Jan 2020 – Dec 2021 · 🇮🇳</span>
           </div>
           <h3>DTDC Express</h3>
