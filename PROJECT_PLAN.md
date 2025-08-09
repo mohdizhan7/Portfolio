@@ -1,7 +1,7 @@
 # Portfolio Revamp — Apple-style Vite + GitHub Pages
 
 Repo: `mohdizhan7/Portfolio`  
-Live: https://mohdizhan7.github.io/Portfolio/
+Live: https://portfolio-ashen-eight-33.vercel.app/
 
 ## Status (today)
 - ✅ Apple-ish UI (tinted bg, glass cards, gradient accents)
