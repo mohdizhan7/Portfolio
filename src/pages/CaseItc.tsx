@@ -8,7 +8,7 @@ export default function CaseItc(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>WMS/TMS Site Setup & Operational Ramp</h1>
         <div className="meta">
-          <img className="logo-badge" src={logos.itc} alt="ITC" />
+          <img className="logo-badge" src={logos.itc} alt="ITC logo" />
           <span>ITC · 🇮🇳 · 2023–24</span>
         </div>
       </header>

@@ -8,7 +8,7 @@ export default function CaseDtdc(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>COVID Backlog Clearance</h1>
         <div className="meta">
-          <img className="logo-badge" src={logos.dtdc} alt="DTDC" />
+          <img className="logo-badge" src={logos.dtdc} alt="DTDC logo" />
           <span>DTDC · 🇮🇳 · 2020</span>
         </div>
       </header>

@@ -8,7 +8,7 @@ export default function CasePg(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>Rendering Optimisation (Philippines)</h1>
         <div className="meta">
-          <img className="logo-badge" src={logos.pg} alt="P&G" />
+          <img className="logo-badge" src={logos.pg} alt="P&G logo" />
           <span>P&amp;G · 🇵🇭 · 2023–24</span>
         </div>
       </header>
