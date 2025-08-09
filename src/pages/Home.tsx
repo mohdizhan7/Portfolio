@@ -46,24 +46,24 @@ type Tile = {
 const tiles: Tile[] = [
   {
     slug: 'itc-ramp',
-    cover: 'logos/Image from Pinterest.jpg',              // warehouse conveyor
-    logo: 'ITC_Limited_Logo.svg',
+    cover: 'work/itc-cover.jpg',              // warehouse conveyor
+    logo: 'itc.svg',
     title: 'WMS/TMS Site Setup & Operational Ramp',
     meta: 'ITC · 🇮🇳 · 2023–24',
     blurb: 'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.'
   },
   {
     slug: 'pg-rendering',
-    cover: 'logos/Image from Pinterest (2).jpg',          // bins/packaging
-    logo: 'Procter_&_Gamble_logo.svg.png',
+    cover: 'work/pg-cover.jpg',          // bins/packaging
+    logo: 'pg.png',
     title: 'Rendering Optimisation (Philippines)',
     meta: 'P&G · 🇵🇭 · 2023–24',
     blurb: 'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.'
   },
   {
     slug: 'dtdc-backlog',
-    cover: 'logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif', // worker/line
-    logo: 'images.png',
+    cover: 'work/dtdc-cover.jpg', // worker/line
+    logo: 'dtdc.png',
     title: 'COVID Backlog Clearance',
     meta: 'DTDC · 🇮🇳 · 2020',
     blurb: 'Partner network + routing & shift orchestration to clear backlog quickly.'
@@ -104,7 +104,7 @@ function Experience(){
       <div className="xp-grid">
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('SBX Logo_PNG2.png')} alt="StackBOX logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logo('stackbox.png')} alt="StackBOX logo" />
             <span>Sep 2023 – Present · 🇮🇳</span>
           </div>
           <h3>StackBOX</h3>
@@ -131,7 +131,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('300967522_509073977885691_1283772767524283947_n.png')} alt="Mindseed logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logo('mindseed.png')} alt="Mindseed logo" />
             <span>Dec 2021 – Aug 2022 · 🇮🇳</span>
           </div>
           <h3>Mindseed Education</h3>
@@ -144,7 +144,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge" src={logo('images.png')} alt="DTDC logo" />
+            <img className="logo-badge" src={logo('dtdc.png')} alt="DTDC logo" />
             <span>Jan 2020 – Dec 2021 · 🇮🇳</span>
           </div>
           <h3>DTDC Express</h3>

@@ -10,13 +10,13 @@ export default function CaseDtdc(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>COVID Backlog Clearance</h1>
         <div className="meta">
-          <img className="logo-badge" src={logo('images.png')} alt="DTDC" />
+          <img className="logo-badge" src={logo('dtdc.png')} alt="DTDC" />
           <span>DTDC · 🇮🇳 · 2020</span>
         </div>
       </header>
 
       <figure className="case__cover">
-        <img src={img('logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif')} alt="" />
+        <img src={img('covers/case-dtdc.jpg')} alt="" />
       </figure>
 
       <section className="case__grid">
