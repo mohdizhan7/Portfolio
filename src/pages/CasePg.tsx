@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-const BASE = import.meta.env.BASE_URL || '/';
-const img = (p:string)=> `${BASE}${p}`;
-const logo = (p:string)=> `${BASE}logos/${p}`;
+import { logos, covers } from '../logos';
 
 export default function CasePg(){
   return (
@@ -10,13 +8,13 @@ export default function CasePg(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>Rendering Optimisation (Philippines)</h1>
         <div className="meta">
-          <img className="logo-badge" src={logo('Procter_&_Gamble_logo.svg.png')} alt="P&G" />
+          <img className="logo-badge" src={logos.pg} alt="P&G" />
           <span>P&amp;G · 🇵🇭 · 2023–24</span>
         </div>
       </header>
 
       <figure className="case__cover">
-        <img src={img('logos/Image from Pinterest (2).jpg')} alt="" />
+        <img src={covers.pg} alt="Bins and packaging in a warehouse" />
       </figure>
 
       <section className="case__grid">

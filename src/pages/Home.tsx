@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-
-const BASE = import.meta.env.BASE_URL || '/';
-const img = (p:string)=> `${BASE}${p}`;
-const logo = (p:string)=> `${BASE}logos/${p}`;
+import { asset } from '../asset';
+import { logos, covers } from '../logos';
 
 function QuickFacts(){
   return (
@@ -19,7 +17,7 @@ function QuickFacts(){
 function Hero(){
   return (
     <section className="hero">
-      <img src={img('izhan.jpg')} alt="Mohd Izhan Shaikh" className="avatar" />
+      <img src={asset('izhan.jpg')} alt="Mohd Izhan Shaikh" className="avatar" />
       <h1>Designing lean, scalable<br/>supply-chain operations.</h1>
       <p className="tagline">
         Assistant Project Manager at StackBOX. I turn BRDs into SOPs/KPIs and lead WMS/TMS rollouts for FMCG, retail &amp; 3PL—clear governance, trained teams, measurable control.
@@ -27,7 +25,7 @@ function Hero(){
       <div className="cta">
         <a href="#work" className="btn btn--primary">View Work</a>
         <a href="mailto:izhan@example.com" className="btn btn--ghost">Contact</a>
-        <a className="btn btn--ghost" href={img('Izhan-Resume.pdf')} download>Download Resume</a>
+        <a className="btn btn--ghost" href={asset('Izhan-Resume.pdf')} download>Download Resume</a>
         <a className="btn btn--ghost" href="https://www.linkedin.com/in/mohdizhan7/" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
       <QuickFacts/>
@@ -38,7 +36,9 @@ function Hero(){
 type Tile = {
   slug: string;
   cover: string;
+  coverAlt: string;
   logo: string;
+  logoAlt: string;
   title: string;
   meta: string;
   blurb: string;
@@ -46,24 +46,30 @@ type Tile = {
 const tiles: Tile[] = [
   {
     slug: 'itc-ramp',
-    cover: 'logos/Image from Pinterest.jpg',              // warehouse conveyor
-    logo: 'ITC_Limited_Logo.svg',
+    cover: covers.itc,
+    coverAlt: 'Warehouse conveyor belts',
+    logo: logos.itc,
+    logoAlt: 'ITC logo',
     title: 'WMS/TMS Site Setup & Operational Ramp',
     meta: 'ITC · 🇮🇳 · 2023–24',
     blurb: 'Two greenfield sites; BRD → SOP/KPIs → testing → go-live. Stabilised ops with clear governance.'
   },
   {
     slug: 'pg-rendering',
-    cover: 'logos/Image from Pinterest (2).jpg',          // bins/packaging
-    logo: 'Procter_&_Gamble_logo.svg.png',
+    cover: covers.pg,
+    coverAlt: 'Bins and packaging in a warehouse',
+    logo: logos.pg,
+    logoAlt: 'P&G logo',
     title: 'Rendering Optimisation (Philippines)',
     meta: 'P&G · 🇵🇭 · 2023–24',
     blurb: 'AS-IS → TO-BE; tuned rules/exceptions & dashboards. Upskilled teams for sustained gains.'
   },
   {
     slug: 'dtdc-backlog',
-    cover: 'logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif', // worker/line
-    logo: 'images.png',
+    cover: covers.dtdc,
+    coverAlt: 'Worker sorting parcels on a line',
+    logo: logos.dtdc,
+    logoAlt: 'DTDC logo',
     title: 'COVID Backlog Clearance',
     meta: 'DTDC · 🇮🇳 · 2020',
     blurb: 'Partner network + routing & shift orchestration to clear backlog quickly.'
@@ -79,10 +85,10 @@ function Work(){
         {tiles.map(t=>(
           <article className="card" key={t.slug}>
             <div className="card__media">
-              <img src={img(t.cover)} alt="" />
+              <img src={t.cover} alt={t.coverAlt} />
             </div>
             <div className="card__meta">
-              <img className="logo-badge" src={logo(t.logo)} alt="" />
+              <img className="logo-badge" src={t.logo} alt={t.logoAlt} />
               <span>{t.meta}</span>
             </div>
             <h3>{t.title}</h3>
@@ -104,7 +110,7 @@ function Experience(){
       <div className="xp-grid">
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('SBX Logo_PNG2.png')} alt="StackBOX logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logos.stackbox} alt="StackBOX logo" />
             <span>Sep 2023 – Present · 🇮🇳</span>
           </div>
           <h3>StackBOX</h3>
@@ -118,7 +124,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge" src={logo('edgistify.png')} alt="Edgistify logo" />
+            <img className="logo-badge" src={logos.edgistify} alt="Edgistify logo" />
             <span>Aug 2022 – Sep 2023 · 🇮🇳</span>
           </div>
           <h3>Edgistify</h3>
@@ -131,7 +137,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge logo-badge--onwhite" src={logo('300967522_509073977885691_1283772767524283947_n.png')} alt="Mindseed logo" />
+            <img className="logo-badge logo-badge--onwhite" src={logos.mindseed} alt="Mindseed logo" />
             <span>Dec 2021 – Aug 2022 · 🇮🇳</span>
           </div>
           <h3>Mindseed Education</h3>
@@ -144,7 +150,7 @@ function Experience(){
 
         <article className="card">
           <div className="card__meta">
-            <img className="logo-badge" src={logo('images.png')} alt="DTDC logo" />
+            <img className="logo-badge" src={logos.dtdc} alt="DTDC logo" />
             <span>Jan 2020 – Dec 2021 · 🇮🇳</span>
           </div>
           <h3>DTDC Express</h3>
