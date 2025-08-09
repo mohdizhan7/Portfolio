@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-const BASE = import.meta.env.BASE_URL || '/';
-const img = (p:string)=> `${BASE}${p}`;
-const logo = (p:string)=> `${BASE}logos/${p}`;
+import { logos, covers } from '../logos';
 
 export default function CaseDtdc(){
   return (
@@ -10,13 +8,13 @@ export default function CaseDtdc(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>COVID Backlog Clearance</h1>
         <div className="meta">
-          <img className="logo-badge" src={logo('images.png')} alt="DTDC" />
+          <img className="logo-badge" src={logos.dtdc} alt="DTDC" />
           <span>DTDC · 🇮🇳 · 2020</span>
         </div>
       </header>
 
       <figure className="case__cover">
-        <img src={img('logos/creativegaga-2023-03-4dbc16a4-2bb0-4ab0-9ddc-bc08d7918953-DTDC_New_Logo_1.jpeg.avif')} alt="" />
+        <img src={covers.dtdc} alt="Worker sorting parcels on a line" />
       </figure>
 
       <section className="case__grid">

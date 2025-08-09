@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-const BASE = import.meta.env.BASE_URL || '/';
-const img = (p:string)=> `${BASE}${p}`;
-const logo = (p:string)=> `${BASE}logos/${p}`;
+import { logos, covers } from '../logos';
 
 export default function CaseItc(){
   return (
@@ -10,13 +8,13 @@ export default function CaseItc(){
         <p className="crumb"><Link to="/">← Back to work</Link></p>
         <h1>WMS/TMS Site Setup & Operational Ramp</h1>
         <div className="meta">
-          <img className="logo-badge" src={logo('ITC_Limited_Logo.svg')} alt="ITC" />
+          <img className="logo-badge" src={logos.itc} alt="ITC" />
           <span>ITC · 🇮🇳 · 2023–24</span>
         </div>
       </header>
 
       <figure className="case__cover">
-        <img src={img('logos/Image from Pinterest.jpg')} alt="" />
+        <img src={covers.itc} alt="Warehouse conveyor belts" />
       </figure>
 
       <section className="case__grid">
